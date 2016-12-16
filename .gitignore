@@ -30,3 +30,7 @@
 
 # Qt Creator
 *.pro.user
+
+# Vim
+*~
+.*~

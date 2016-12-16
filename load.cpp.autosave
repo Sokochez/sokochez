@@ -1,0 +1,11 @@
+#include <iostream>
+#include <string>
+#include <load.h>
+
+using namespace std;
+
+namespace {
+typedef vector <vector <char>> CVMat
+void LoadMap(const string & FileName)
+
+}
