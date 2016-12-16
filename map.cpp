@@ -2,6 +2,7 @@
 
 using namespace std;
 
+
 CMatrix LoadMap (const string & FileName)
 {
     CVLine line;
@@ -16,6 +17,7 @@ CMatrix LoadMap (const string & FileName)
     }
     return map;
 }
+
 
 CPosition FindPlayer (const CMatrix & Map, const char & Token)
 {
