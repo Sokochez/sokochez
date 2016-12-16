@@ -1,0 +1,2 @@
+# sokochez
+The Sokochez game
