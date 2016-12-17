@@ -16,7 +16,7 @@ const char KTokenPlayer2 = '2';
 
 
 /*!
- * @brief Loads the map from a file
+ * @brief LoadMap Loads the map from a file
  * @param FileName The name of the file
  * @return A vector of string containing the map
  */
@@ -24,12 +24,20 @@ const char KTokenPlayer2 = '2';
 CMatrix LoadMap (const string & FileName);
 
 /*!
- * @brief Finds the position of the player of same token in map
+ * @brief FindPlayer Finds the position of the player of same token in map
  * @param Map The map to parse
  * @param Token The token to find
  * @return A pair containing the x and y position in that order.
  */
 
 CPosition FindPlayer (const CMatrix & Map, const char & Token);
+
+/**
+ * @brief IsMapOK Check if a map was loaded
+ * @param Map The map to check
+ * @return Returns true if the map has been correctly loaded
+ */
+
+bool CheckMapLoaded (const CMatrix & Map);
 
 #endif // MAP_H

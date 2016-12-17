@@ -35,3 +35,8 @@ CPosition FindPlayer (const CMatrix & Map, const char & Token)
         }
     }
 }
+
+bool CheckMapLoaded (const CMatrix & Map)
+{
+    return (Map.size() > 0);
+}
