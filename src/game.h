@@ -6,7 +6,7 @@
 using namespace std;
 
 /**
- * @brief Game The main game function
+ * @brief The main game function
  * @param FileName The name of the file containing the map of the game
  */
 
