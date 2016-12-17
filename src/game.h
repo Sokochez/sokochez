@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <map.h>
+#include <display.h>
 
 using namespace std;
 

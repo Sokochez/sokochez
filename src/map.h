@@ -19,6 +19,10 @@ const char KTokenPlayer1 = '1';
 /// token (char) of player 1
 const char KTokenPlayer2 = '2';
 
+const char KTokenWall ('#');
+const char KTokenBlock ('O');
+const char KTokenEmpty (' ');
+
 /**
  * @brief Loads the map from a file
  * @param FileName The name of the file

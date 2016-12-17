@@ -15,6 +15,7 @@ void Game (const string & FileName)
         cout << "Error : Map not valid" << endl;
         return;
     }
+    ShowMatrix(map);
     CPosition P1 (FindPlayer(map,KTokenPlayer1));
     CPosition P2 (FindPlayer(map, KTokenPlayer2));
     cout << P1.first << " " << P1.second << endl;

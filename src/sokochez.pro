@@ -5,8 +5,10 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     map.cpp \
-    game.cpp
+    game.cpp \
+    display.cpp
 
 HEADERS += \
     map.h \
-    game.h
+    game.h \
+    display.h
