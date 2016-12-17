@@ -34,3 +34,10 @@
 # Vim
 *~
 .*~
+
+# Qt
+build*/
+
+# Doxygen
+html/
+latex/
