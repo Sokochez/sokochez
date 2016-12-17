@@ -34,9 +34,23 @@ CPosition FindPlayer (const CMatrix & Map, const char & Token)
             }
         }
     }
+    pos.first = Map[0].size();
+    pos.second = Map.size();
+    return pos;
 }
 
 bool CheckMapLoaded (const CMatrix & Map)
 {
     return (Map.size() > 0);
+}
+
+bool IsMapValid (const CMatrix & Map)
+{
+    CPosition P1 (FindPlayer(Map, KTokenPlayer1));
+    CPosition P2 (FindPlayer(Map, KTokenPlayer2));
+    return ((P1.first < Map[0].size())
+            && (P1.second < Map.size())
+            && (P2.first < Map[0].size())
+            && (P2.second < Map.size())
+                );
 }
