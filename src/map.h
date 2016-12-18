@@ -13,7 +13,7 @@ typedef string CVLine;
 /// type defining a matrix
 typedef vector <string> CMatrix;
 /// type defining a position
-typedef pair <unsigned, unsigned> CPosition;
+typedef pair <int, int> CPosition;
 /// token (char) of player 1
 const char KTokenPlayer1 = '1';
 /// token (char) of player 1

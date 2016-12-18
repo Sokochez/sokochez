@@ -6,9 +6,11 @@ CONFIG -= qt
 SOURCES += main.cpp \
     map.cpp \
     game.cpp \
-    display.cpp
+    display.cpp \
+    gameplay.cpp
 
 HEADERS += \
     map.h \
     game.h \
-    display.h
+    display.h \
+    gameplay.h

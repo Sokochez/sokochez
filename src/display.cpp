@@ -7,9 +7,9 @@ void ClearScreen ()
     cout << "\033[H\033[2J";
 }
 
-void Color (const string & coul)
+void Color (const string & Col)
 {
-    cout << "\033[" << coul <<"m";
+    cout << "\033[" << Col <<"m";
 }
 
 void ShowMatrix (const CMatrix & Mat)

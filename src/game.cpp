@@ -18,7 +18,12 @@ void Game (const string & FileName)
     ShowMatrix(map);
     CPosition P1 (FindPlayer(map,KTokenPlayer1));
     CPosition P2 (FindPlayer(map, KTokenPlayer2));
-    cout << P1.first << " " << P1.second << endl;
-    cout << P2.first << " " << P2.second << endl;
-
+    char key;
+    while (!CheckWin(P1, P2))
+    {
+        ClearScreen();
+        ShowMatrix(map);
+        cin >> key;
+        Action(map, key, P1, P2);
+    }
 }

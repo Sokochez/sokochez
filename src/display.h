@@ -31,7 +31,7 @@ void ClearScreen ();
  * @param coul The color to set
  */
 
-void Color (const string & coul);
+void Color (const string & Col);
 
 /**
  * @brief Displays the matrix

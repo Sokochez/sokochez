@@ -3,6 +3,7 @@
 
 #include <map.h>
 #include <display.h>
+#include <gameplay.h>
 
 using namespace std;
 
