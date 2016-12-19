@@ -37,4 +37,4 @@ void Game (const string & FileName)
     cout << "Victory ! You won in "<< nbmoves << " moves !" << endl;
     getchar();
     getchar();
-}
+} // Game

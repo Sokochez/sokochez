@@ -16,7 +16,7 @@ CMatrix LoadMap (const string & FileName)
         }
     }
     return map;
-}
+} // LoadMap
 
 
 CPosition FindToken (const CMatrix & Map, const char & Token)
@@ -37,12 +37,12 @@ CPosition FindToken (const CMatrix & Map, const char & Token)
     pos.first = Map[0].size();
     pos.second = Map.size();
     return pos;
-}
+} // FindToken
 
 bool CheckMapLoaded (const CMatrix & Map)
 {
     return (Map.size() > 0);
-}
+} // CheckMapLoaded
 
 bool IsMapValid (const CMatrix & Map)
 {
@@ -53,4 +53,4 @@ bool IsMapValid (const CMatrix & Map)
             && (P2.first < Map[0].size())
             && (P2.second < Map.size())
                 );
-}
+} // IsMapValid

@@ -38,9 +38,8 @@ bool Move (CMatrix & Mat, CPosition & Pos, const int & DistX, const int & DistY)
         }
     }
     return false;
+} //Move
 
-
-}
 
 void Action (CMatrix & Mat, const char & Key, CPosition & Player1, CPosition & Player2)
 {
@@ -73,15 +72,15 @@ void Action (CMatrix & Mat, const char & Key, CPosition & Player1, CPosition & P
         cout << "Invalid key" << endl;
         break;
     }
-}
+} // Action
 
 bool IsPlayer (const CMatrix & Mat, const CPosition & Pos)
 {
     return ((Mat[Pos.second][Pos.first] == KTokenPlayer1)
             || (Mat[Pos.second][Pos.first] == KTokenPlayer2));
-}
+} // IsPlayer
 
 bool CheckWin (const CPosition & Pos1, const CPosition & Pos2)
 {
     return (Pos1 == Pos2);
-}
+} // CheckWin

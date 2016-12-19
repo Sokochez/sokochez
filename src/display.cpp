@@ -5,12 +5,12 @@ using namespace std;
 void ClearScreen ()
 {
     cout << "\033[H\033[2J";
-}
+} // ClearScreen
 
 void Color (const string & Col)
 {
     cout << "\033[" << Col <<"m";
-}
+} // Color
 
 void ShowMatrix (const CMatrix & Mat)
 {
@@ -42,4 +42,4 @@ void ShowMatrix (const CMatrix & Mat)
         cout << endl;
     }
     Color(KReset);
-}
+} // ShowMatrix
