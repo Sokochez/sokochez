@@ -5,8 +5,8 @@ using namespace std;
 
 bool Move (CMatrix & Mat, CPosition & Pos, const int & DistX, const int & DistY)
 {
-    if (    (-DistY > Pos.second)
-            ||(-DistX > Pos.first)
+    if (    (-DistY > int (Pos.second))
+            ||(-DistX > int (Pos.first))
             ||(DistY + Pos.second >= Mat.size())
             ||(DistX + Pos.first >= Mat[Pos.second].size())
             ||(Mat[Pos.second + DistY][Pos.first + DistX] == KTokenWall))

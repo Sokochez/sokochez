@@ -15,8 +15,8 @@ void Game (const string & FileName)
         cout << "Error : Map not valid" << endl;
         return;
     }
-    CPosition P1 (FindPlayer(map,KTokenPlayer1));
-    CPosition P2 (FindPlayer(map, KTokenPlayer2));
+    CPosition P1 (FindToken(map,KTokenPlayer1));
+    CPosition P2 (FindToken(map, KTokenPlayer2));
     char key;
     unsigned nbmoves (0);
     ClearScreen();

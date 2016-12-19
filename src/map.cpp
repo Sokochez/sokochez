@@ -19,7 +19,7 @@ CMatrix LoadMap (const string & FileName)
 }
 
 
-CPosition FindPlayer (const CMatrix & Map, const char & Token)
+CPosition FindToken (const CMatrix & Map, const char & Token)
 {
     CPosition pos;
     for (unsigned i (0); i < Map.size(); ++i)
@@ -46,8 +46,8 @@ bool CheckMapLoaded (const CMatrix & Map)
 
 bool IsMapValid (const CMatrix & Map)
 {
-    CPosition P1 (FindPlayer(Map, KTokenPlayer1));
-    CPosition P2 (FindPlayer(Map, KTokenPlayer2));
+    CPosition P1 (FindToken(Map, KTokenPlayer1));
+    CPosition P2 (FindToken(Map, KTokenPlayer2));
     return ((P1.first < Map[0].size())
             && (P1.second < Map.size())
             && (P2.first < Map[0].size())

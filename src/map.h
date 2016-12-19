@@ -13,7 +13,7 @@ typedef string CVLine;
 /// type defining a matrix
 typedef vector <string> CMatrix;
 /// type defining a position
-typedef pair <int, int> CPosition;
+typedef pair <unsigned, unsigned> CPosition;
 /// token (char) of player 1
 const char KTokenPlayer1 = '1';
 /// token (char) of player 1
@@ -39,7 +39,7 @@ CMatrix LoadMap (const string & FileName);
  * the pair contains the size of the map if the player is not found
  */
 
-CPosition FindPlayer (const CMatrix & Map, const char & Token);
+CPosition FindToken (const CMatrix & Map, const char & Token);
 
 /**
  * @brief Checks if a map was loaded
