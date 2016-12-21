@@ -11,6 +11,12 @@ void Game (const string & FileName)
         return;
     }
     GameObjects obj (ParseMap(map));
+    int gamemode (GetGamemode(obj));
+    if (gamemode == KGMNone)
+    {
+        cout << "Error : Gamemode could not be determined" << endl;
+        return;
+    }
     char key;
     unsigned nbmoves (0);
     ClearScreen();

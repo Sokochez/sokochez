@@ -60,4 +60,21 @@ bool IsPlayer (const CMatrix & Mat, const CPosition & Pos);
 
 bool CheckWin (const CPosition & Pos1, const CPosition & Pos2);
 
+/**
+ * @brief Determines the game mode depending on the objects in GameObjects
+ * @param Objects The GameObjects map
+ * @return The gamemode found depending on the objects
+ */
+
+int GetGamemode (const GameObjects & Objects);
+
+/**
+ * @brief Checks if the object exists or not
+ * @param Objects The objects that will be checked
+ * @param Key The key of the object that is being looked for
+ * @return true if the object exists in the Map
+ */
+
+bool ObjectExists (const GameObjects & Objects, const char & Key);
+
 #endif // GAMEPLAY_H

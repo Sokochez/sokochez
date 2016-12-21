@@ -84,3 +84,19 @@ bool CheckWin (const CPosition & Pos1, const CPosition & Pos2)
 {
     return (Pos1 == Pos2);
 } // CheckWin
+
+int GetGamemode (const GameObjects & Objects)
+{
+    int GM (KGMNone);
+    if (    ObjectExists(Objects, KTokenPlayer1)
+            && ObjectExists(Objects, KTokenPlayer2))
+    {
+        GM = KGMPlayersMeet;
+    }
+    return GM;
+} // GetGamemode
+
+bool ObjectExists (const GameObjects & Objects, const char & Key)
+{
+    return !(Objects.find(Key) == Objects.end());
+}
