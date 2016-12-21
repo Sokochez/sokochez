@@ -23,7 +23,7 @@ GameObjects ParseMap (const CMatrix & Map)
     GameObjects Objects;
     for (unsigned i (0); i < Map.size(); ++i)
     {
-        for (unsigned j (0); j < Map[0].size(); ++j)
+        for (unsigned j (0); j < Map[i].size(); ++j)
         {
             if (    (Map[i][j] != KTokenWall)
                     && (Map[i][j] != KTokenEmpty)
@@ -48,7 +48,7 @@ bool IsPlayer (const CMatrix & Mat, const CPosition & Pos)
             || (Mat[Pos.second][Pos.first] == KTokenPlayer2));
 } // IsPlayer
 
-bool IsBlockChar (const char & Ch)
+bool IsSpecBlock (const char & Ch)
 {
     return (((Ch <= KTokenBlockMax)
             && (Ch >= KTokenBlockMin))

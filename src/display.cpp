@@ -33,8 +33,11 @@ void ShowMatrix (const CMatrix & Mat)
                 case KTokenWall :
                     Color (KColWall);
                     break;
+                case KTokenBlock :
+                    Color (KColBlock);
+                    break;
                 }
-            if (IsBlockChar(Mat[i][j]))
+            if (IsSpecBlock(Mat[i][j]))
                 Color (KColObj);
             cout << Mat[i][j];
         }

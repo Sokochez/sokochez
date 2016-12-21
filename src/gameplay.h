@@ -25,23 +25,24 @@ const int KGMClear (3);
 /**
  * @brief Moves a token located at some position at another position
  * @param Mat The matrix the token is on
+ * @param Objects The Special objects of the map
  * @param Pos The position of the token
  * @param DistX The distance on the X axis
  * @param DistY The distance on the Y axis
  * @return If the move was successful
  */
 
-bool Move(CMatrix & Mat, CPosition & Pos, const int & DistX, const int & DistY);
+
+bool Move (CMatrix & Mat, GameObjects & Objects, CPosition & Pos, const int & DistX, const int & DistY);
 
 /**
- * @brief Does something depending on the key passed
- * @param Mat The matrix to do something on
- * @param Key The key that defines the action
- * @param Player1 The Player 1
- * @param Player2 The Player 2
+ * @brief Does something depending on the key
+ * @param Mat The matrix
+ * @param Objects The Objects
+ * @param Key The Key
  */
 
-void Action(CMatrix & Mat, const char & Key, CPosition & Player1, CPosition & Player2);
+void Action (CMatrix & Mat, GameObjects & Objects, const char & Key);
 
 /**
  * @brief Checks if there is a win
@@ -68,5 +69,21 @@ int GetGamemode (const GameObjects & Objects);
  */
 
 bool ObjectExists (const GameObjects & Objects, const char & Key);
+
+/**
+ * @brief Writes the rules of a gamemode
+ * @param GameMode The gamemode
+ */
+
+void WriteRules (const char & GameMode);
+
+/**
+ * @brief Determines if two positions are in contact
+ * @param Pos1 The first position
+ * @param Pos2 The second position
+ * @return true if the positions are in contact
+ */
+
+bool AreInContact (const CPosition & Pos1, const CPosition & Pos2);
 
 #endif // GAMEPLAY_H

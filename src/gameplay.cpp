@@ -3,7 +3,7 @@
 using namespace std;
 
 
-bool Move (CMatrix & Mat, CPosition & Pos, const int & DistX, const int & DistY)
+bool Move (CMatrix & Mat, GameObjects & Objects, CPosition & Pos, const int & DistX, const int & DistY)
 {
     if (    (-DistY > int (Pos.second))
             ||(-DistX > int (Pos.first))
@@ -17,8 +17,7 @@ bool Move (CMatrix & Mat, CPosition & Pos, const int & DistX, const int & DistY)
     char Token (Mat[Pos.second][Pos.first]);
     CPosition NewPos (Pos.first + DistX, Pos.second + DistY);
 
-    if ((Mat[NewPos.second][NewPos.first] == KTokenEmpty)
-        || (IsPlayer(Mat, Pos) && IsPlayer(Mat, NewPos)))
+    if (Mat[NewPos.second][NewPos.first] == KTokenEmpty)
     {
         Mat[NewPos.second][NewPos.first] = Token;
         Mat[Pos.second][Pos.first] = KTokenEmpty;
@@ -30,43 +29,51 @@ bool Move (CMatrix & Mat, CPosition & Pos, const int & DistX, const int & DistY)
      * move player
      */
     if (    IsPlayer(Mat, Pos)
-            && IsBlockChar(Mat[NewPos.second][NewPos.first]))
+            && (Mat[NewPos.second][NewPos.first] == KTokenBlock))
     {
-        if (Move (Mat, NewPos, DistX, DistY))
+        if (Move (Mat, Objects, NewPos, DistX, DistY))
         {
-            return Move (Mat, Pos, DistX, DistY);
+            return Move (Mat, Objects, Pos, DistX, DistY);
+        }
+    }
+    else if (IsPlayer(Mat, Pos)
+             && (IsSpecBlock(Mat[NewPos.second][NewPos.first])))
+    {
+        if (Move (Mat, Objects, Objects[Mat[NewPos.second][NewPos.first]], DistX, DistY))
+        {
+            return Move (Mat, Objects, Pos, DistX, DistY);
         }
     }
     return false;
 } //Move
 
 
-void Action (CMatrix & Mat, const char & Key, CPosition & Player1, CPosition & Player2)
+void Action (CMatrix & Mat, GameObjects & Objects, const char & Key)
 {
     switch (Key) {
     case KP1MoveUp:
-        Move (Mat, Player1, 0, -1);
+        Move (Mat, Objects, Objects[KTokenPlayer1], 0, -1);
         break;
     case KP1MoveDown:
-        Move (Mat, Player1, 0, 1);
+        Move (Mat, Objects,  Objects[KTokenPlayer1], 0, 1);
         break;
     case KP1MoveLeft:
-        Move (Mat, Player1, -1, 0);
+        Move (Mat, Objects,  Objects[KTokenPlayer1], -1, 0);
         break;
     case KP1MoveRight:
-        Move (Mat, Player1, 1, 0);
+        Move (Mat, Objects,  Objects[KTokenPlayer1], 1, 0);
         break;
     case KP2MoveUp:
-        Move (Mat, Player2, 0, -1);
+        Move (Mat, Objects,  Objects[KTokenPlayer2], 0, -1);
         break;
     case KP2MoveDown:
-        Move (Mat, Player2, 0, 1);
+        Move (Mat, Objects,  Objects[KTokenPlayer2], 0, 1);
         break;
     case KP2MoveLeft:
-        Move (Mat, Player2, -1, 0);
+        Move (Mat, Objects,  Objects[KTokenPlayer2], -1, 0);
         break;
     case KP2MoveRight:
-        Move (Mat, Player2, 1, 0);
+        Move (Mat, Objects,  Objects[KTokenPlayer2], 1, 0);
         break;
     default:
         cout << "Invalid key" << endl;
@@ -78,9 +85,13 @@ bool CheckWin (GameObjects & Objects, const int & GameMode)
 {
     if (GameMode == KGMPlayersMeet)
     {
-        return (Objects[KTokenPlayer1] == Objects[KTokenPlayer2]);
+        return AreInContact(Objects[KTokenPlayer1],Objects[KTokenPlayer2]);
     }
-    else return false;
+    if (GameMode == KGMBlocksMeet)
+    {
+        return AreInContact(Objects[KTokenBlockMin], Objects[KTokenBlockMin+1]);
+    }
+    return false;
 } // CheckWin
 
 int GetGamemode (const GameObjects & Objects)
@@ -91,8 +102,8 @@ int GetGamemode (const GameObjects & Objects)
     {
         GM = KGMPlayersMeet;
 
-        if (ObjectExists(Objects, KTokenBlockMax)
-                && (ObjectExists(Objects, KTokenBlockMax + 1)))
+        if (ObjectExists(Objects, KTokenBlockMin)
+                && (ObjectExists(Objects, KTokenBlockMin + 1)))
         {
             GM = KGMBlocksMeet;
         }
@@ -107,3 +118,31 @@ bool ObjectExists (const GameObjects & Objects, const char & Key)
 {
     return !(Objects.find(Key) == Objects.end());
 }
+
+void WriteRules (const char & GameMode)
+{
+    cout << "Game mode: ";
+    switch (GameMode)
+    {
+    case KGMPlayersMeet:
+        cout << "Meet \nThe players must meet each other" << endl;
+        break;
+    case KGMBlocksMeet:
+        cout << "Block Meet \nThe two special blocks must meet" << endl;
+        break;
+    case KGMClear:
+        cout << "Clear \nPush the blocks at their respective position" << endl;
+        break;
+    }
+}
+
+bool AreInContact (const CPosition & Pos1, const CPosition & Pos2)
+{
+    return ((Pos1.second == Pos2.second)
+            && (Pos1.first >= Pos2.first - 1)
+            && (Pos1.first <= Pos2.first + 1))
+            ||((Pos1.first == Pos2.first)
+            && (Pos1.second >= Pos2.second - 1)
+            && (Pos1.second <= Pos2.second + 1));
+
+} // AreInContact

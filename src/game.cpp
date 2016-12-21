@@ -17,12 +17,14 @@ void Game (const string & FileName)
         cout << "Error : Gamemode could not be determined" << endl;
         return;
     }
+
+    ClearScreen();
     char key;
     unsigned nbmoves (0);
-    ClearScreen();
-    cout << "Loaded map " << FileName << endl
-         << "Win by joining the other player" << endl
-         << "Press a key to begin" << endl;
+    cout << "Loaded map " << FileName << endl;
+
+    WriteRules(gamemode);
+    cout << "Press a key to begin" << endl;
     getchar();
 
     while (!CheckWin(obj, gamemode))
@@ -30,7 +32,7 @@ void Game (const string & FileName)
         ClearScreen();
         ShowMatrix(map);
         cin >> key;
-        Action(map, key, obj[KTokenPlayer1], obj[KTokenPlayer2]);
+        Action(map, obj, key);
         ++nbmoves;
     }
     ClearScreen();
