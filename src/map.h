@@ -5,23 +5,38 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <map>
 
 using namespace std;
 
 /// type defining a line
 typedef string CVLine;
+
 /// type defining a matrix
 typedef vector <string> CMatrix;
+
 /// type defining a position
 typedef pair <unsigned, unsigned> CPosition;
-/// token (char) of player 1
-const char KTokenPlayer1 = '1';
-/// token (char) of player 1
-const char KTokenPlayer2 = '2';
 
+/// type defining a map of game items
+typedef map <char, CPosition> GameObjects;
+
+//Objects
+const char KTokenPlayer1 ('1');
+const char KTokenPlayer2 ('2');
+
+/* Special blocks will be comprised between these values
+ * and their destination if they have one will be the
+ * char of the block in lowercase */
+
+const char KTokenBlockMin ('A');
+const char KTokenBlockMax ('H');
+
+//Not Objects
 const char KTokenWall ('#');
 const char KTokenBlock ('O');
 const char KTokenEmpty (' ');
+
 
 /**
  * @brief Loads the map from a file
@@ -32,14 +47,12 @@ const char KTokenEmpty (' ');
 CMatrix LoadMap (const string & FileName);
 
 /**
- * @brief Finds the position of the player of same token in map
- * @param Map The map to parse
- * @param Token The token to find
- * @return A pair containing the x and y position in that order.
- * the pair contains the size of the map if the player is not found
+ * @brief Returns a map of the objects in the game map assuming they are unique
+ * @param Map the map to parse
+ * @return A map of the objects
  */
 
-CPosition FindToken (const CMatrix & Map, const char & Token);
+GameObjects ParseMap (const CMatrix & Map);
 
 /**
  * @brief Checks if a map was loaded

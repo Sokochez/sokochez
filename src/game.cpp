@@ -10,13 +10,7 @@ void Game (const string & FileName)
         cout << "Error : Map not loaded correctly" << endl;
         return;
     }
-    if (!IsMapValid(map))
-    {
-        cout << "Error : Map not valid" << endl;
-        return;
-    }
-    CPosition P1 (FindToken(map,KTokenPlayer1));
-    CPosition P2 (FindToken(map, KTokenPlayer2));
+    GameObjects obj (ParseMap(map));
     char key;
     unsigned nbmoves (0);
     ClearScreen();
@@ -25,12 +19,12 @@ void Game (const string & FileName)
          << "Press a key to begin" << endl;
     getchar();
 
-    while (!CheckWin(P1, P2))
+    while (!CheckWin(obj[KTokenPlayer1], obj[KTokenPlayer2]))
     {
         ClearScreen();
         ShowMatrix(map);
         cin >> key;
-        Action(map, key, P1, P2);
+        Action(map, key, obj[KTokenPlayer1], obj[KTokenPlayer2]);
         ++nbmoves;
     }
     ClearScreen();
