@@ -44,13 +44,13 @@ bool Move(CMatrix & Mat, CPosition & Pos, const int & DistX, const int & DistY);
 void Action(CMatrix & Mat, const char & Key, CPosition & Player1, CPosition & Player2);
 
 /**
- * @brief Checks if the player 1 reached player 2
- * @param Pos1 Position of player 1
- * @param Pos2 Position of player 2
- * @return True if player 1 is at the same pos as player 2
+ * @brief Checks if there is a win
+ * @param Objects The game objects
+ * @param GameMode The game mode
+ * @return true if there is a victory
  */
 
-bool CheckWin (const CPosition & Pos1, const CPosition & Pos2);
+bool CheckWin (GameObjects & Objects, const int & GameMode);
 
 /**
  * @brief Determines the game mode depending on the objects in GameObjects

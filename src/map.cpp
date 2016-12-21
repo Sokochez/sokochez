@@ -48,12 +48,10 @@ bool IsPlayer (const CMatrix & Mat, const CPosition & Pos)
             || (Mat[Pos.second][Pos.first] == KTokenPlayer2));
 } // IsPlayer
 
-bool IsBlockObjChar (const char & Ch)
+bool IsBlockChar (const char & Ch)
 {
     return (((Ch <= KTokenBlockMax)
             && (Ch >= KTokenBlockMin))
-            || ((Ch <= tolower(KTokenBlockMax))
-            && (Ch >= tolower(KTokenBlockMin)))
             || (Ch == KTokenBlock));
 }
 

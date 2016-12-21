@@ -25,7 +25,7 @@ void Game (const string & FileName)
          << "Press a key to begin" << endl;
     getchar();
 
-    while (!CheckWin(obj[KTokenPlayer1], obj[KTokenPlayer2]))
+    while (!CheckWin(obj, gamemode))
     {
         ClearScreen();
         ShowMatrix(map);

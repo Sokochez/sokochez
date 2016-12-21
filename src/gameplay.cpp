@@ -30,7 +30,7 @@ bool Move (CMatrix & Mat, CPosition & Pos, const int & DistX, const int & DistY)
      * move player
      */
     if (    IsPlayer(Mat, Pos)
-            && IsBlockObjChar(Mat[NewPos.second][NewPos.first]))
+            && IsBlockChar(Mat[NewPos.second][NewPos.first]))
     {
         if (Move (Mat, NewPos, DistX, DistY))
         {
@@ -74,9 +74,13 @@ void Action (CMatrix & Mat, const char & Key, CPosition & Player1, CPosition & P
     }
 } // Action
 
-bool CheckWin (const CPosition & Pos1, const CPosition & Pos2)
+bool CheckWin (GameObjects & Objects, const int & GameMode)
 {
-    return (Pos1 == Pos2);
+    if (GameMode == KGMPlayersMeet)
+    {
+        return (Objects[KTokenPlayer1] == Objects[KTokenPlayer2]);
+    }
+    else return false;
 } // CheckWin
 
 int GetGamemode (const GameObjects & Objects)

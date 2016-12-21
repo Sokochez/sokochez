@@ -34,7 +34,7 @@ void ShowMatrix (const CMatrix & Mat)
                     Color (KColWall);
                     break;
                 }
-            if (IsBlockObjChar(Mat[i][j]))
+            if (IsBlockChar(Mat[i][j]))
                 Color (KColObj);
             cout << Mat[i][j];
         }
