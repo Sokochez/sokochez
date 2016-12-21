@@ -6,6 +6,7 @@
 #include <fstream>
 #include <vector>
 #include <map>
+#include <cctype>
 
 using namespace std;
 
@@ -34,7 +35,7 @@ const char KTokenBlockMax ('H');
 
 //Not Objects
 const char KTokenWall ('#');
-const char KTokenBlock ('O');
+const char KTokenBlock ('&');
 const char KTokenEmpty (' ');
 
 
@@ -70,4 +71,21 @@ bool CheckMapLoaded (const CMatrix & Map);
 
 bool IsMapValid (const CMatrix & Map);
 
+
+/**
+ * @brief Returns wether the token at Pos on the matrix Mat is a player token or not
+ * @param Mat The matrix
+ * @param Pos The position to check
+ * @return true if token at position Pos is a player token
+ */
+
+bool IsPlayer (const CMatrix & Mat, const CPosition & Pos);
+
+/**
+ * @brief Checks if char is a block object char
+ * @param the char to check
+ * @return true if the char is a block char
+ */
+
+bool IsBlockObjChar (const char & Ch);
 #endif // MAP_H

@@ -30,7 +30,7 @@ bool Move (CMatrix & Mat, CPosition & Pos, const int & DistX, const int & DistY)
      * move player
      */
     if (    IsPlayer(Mat, Pos)
-            && (Mat[NewPos.second][NewPos.first] == KTokenBlock))
+            && IsBlockObjChar(Mat[NewPos.second][NewPos.first]))
     {
         if (Move (Mat, NewPos, DistX, DistY))
         {
@@ -74,12 +74,6 @@ void Action (CMatrix & Mat, const char & Key, CPosition & Player1, CPosition & P
     }
 } // Action
 
-bool IsPlayer (const CMatrix & Mat, const CPosition & Pos)
-{
-    return ((Mat[Pos.second][Pos.first] == KTokenPlayer1)
-            || (Mat[Pos.second][Pos.first] == KTokenPlayer2));
-} // IsPlayer
-
 bool CheckWin (const CPosition & Pos1, const CPosition & Pos2)
 {
     return (Pos1 == Pos2);
@@ -92,6 +86,15 @@ int GetGamemode (const GameObjects & Objects)
             && ObjectExists(Objects, KTokenPlayer2))
     {
         GM = KGMPlayersMeet;
+
+        if (ObjectExists(Objects, KTokenBlockMax)
+                && (ObjectExists(Objects, KTokenBlockMax + 1)))
+        {
+            GM = KGMBlocksMeet;
+        }
+        else if (ObjectExists(Objects, KTokenBlockMin)
+                 && ObjectExists(Objects, tolower(KTokenBlockMin)))
+                GM = KGMClear;
     }
     return GM;
 } // GetGamemode

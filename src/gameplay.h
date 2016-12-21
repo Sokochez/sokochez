@@ -2,6 +2,7 @@
 #define GAMEPLAY_H
 
 #include <map.h>
+#include <cctype>
 
 using namespace std;
 
@@ -41,15 +42,6 @@ bool Move(CMatrix & Mat, CPosition & Pos, const int & DistX, const int & DistY);
  */
 
 void Action(CMatrix & Mat, const char & Key, CPosition & Player1, CPosition & Player2);
-
-/**
- * @brief Returns wether the token at Pos on the matrix Mat is a player token
- * @param Mat The matrix
- * @param Pos The position to check
- * @return true if token at position Pos is a player's token
- */
-
-bool IsPlayer (const CMatrix & Mat, const CPosition & Pos);
 
 /**
  * @brief Checks if the player 1 reached player 2

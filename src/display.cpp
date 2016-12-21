@@ -21,9 +21,6 @@ void ShowMatrix (const CMatrix & Mat)
             if (    (0 == j) || (Mat[i][j] != Mat[i][j-1]))
                 switch (Mat[i][j])
                 {
-                case KTokenBlock :
-                    Color (KColBlock);
-                    break;
                 case KTokenEmpty :
                     Color (KColEmpty);
                     break;
@@ -37,6 +34,8 @@ void ShowMatrix (const CMatrix & Mat)
                     Color (KColWall);
                     break;
                 }
+            if (IsBlockObjChar(Mat[i][j]))
+                Color (KColObj);
             cout << Mat[i][j];
         }
         cout << endl;

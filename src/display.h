@@ -19,6 +19,7 @@ const string KColP1 (KRouge);
 const string KColP2 (KBleu);
 const string KColBlock (KJaune);
 const string KColEmpty (KReset);
+const string KColObj (KVert);
 
 /**
  * @brief Clears the screen

@@ -41,3 +41,19 @@ bool CheckMapLoaded (const CMatrix & Map)
 {
     return (Map.size() > 0);
 } // CheckMapLoaded
+
+bool IsPlayer (const CMatrix & Mat, const CPosition & Pos)
+{
+    return ((Mat[Pos.second][Pos.first] == KTokenPlayer1)
+            || (Mat[Pos.second][Pos.first] == KTokenPlayer2));
+} // IsPlayer
+
+bool IsBlockObjChar (const char & Ch)
+{
+    return (((Ch <= KTokenBlockMax)
+            && (Ch >= KTokenBlockMin))
+            || ((Ch <= tolower(KTokenBlockMax))
+            && (Ch >= tolower(KTokenBlockMin)))
+            || (Ch == KTokenBlock));
+}
+
