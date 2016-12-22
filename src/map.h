@@ -83,9 +83,19 @@ bool IsPlayer (const CMatrix & Mat, const CPosition & Pos);
 
 /**
  * @brief Checks if char is a block object char
- * @param the char to check
+ * @param Ch the char to check
  * @return true if the char is a block char
  */
 
 bool IsSpecBlock (const char & Ch);
+
+/**
+ * @brief Checks if char is a special position char
+ * @param Ch the char to check
+ * @return true if the char is a special position char
+ */
+
+bool IsSpecPos (const char & Ch);
+
+
 #endif // MAP_H

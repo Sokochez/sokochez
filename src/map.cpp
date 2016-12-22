@@ -55,3 +55,9 @@ bool IsSpecBlock (const char & Ch)
             || (Ch == KTokenBlock));
 }
 
+bool IsSpecPos (const char & Ch)
+{
+    return (((Ch <= tolower(KTokenBlockMax))
+            && (Ch >= tolower(KTokenBlockMin)))
+            || (Ch == tolower(KTokenBlock)));
+}

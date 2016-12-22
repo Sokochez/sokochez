@@ -11,7 +11,7 @@ const string KRouge   ("31");
 const string KVert    ("32");
 const string KJaune   ("33");
 const string KBleu    ("34");
-const string KMAgenta ("35");
+const string KMagenta ("35");
 const string KCyan    ("36");
 
 const string KColWall (KReset);
@@ -20,7 +20,7 @@ const string KColP2 (KBleu);
 const string KColBlock (KJaune);
 const string KColEmpty (KReset);
 const string KColObj (KVert);
-
+const string KColPos (KMagenta);
 /**
  * @brief Clears the screen
  */

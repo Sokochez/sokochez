@@ -19,6 +19,7 @@ void ShowMatrix (const CMatrix & Mat)
         for (unsigned j (0); j < Mat[i].size(); ++j)
         {
             if (    (0 == j) || (Mat[i][j] != Mat[i][j-1]))
+            {
                 switch (Mat[i][j])
                 {
                 case KTokenEmpty :
@@ -37,8 +38,11 @@ void ShowMatrix (const CMatrix & Mat)
                     Color (KColBlock);
                     break;
                 }
-            if (IsSpecBlock(Mat[i][j]))
-                Color (KColObj);
+                if (IsSpecBlock(Mat[i][j]))
+                    Color (KColObj);
+                if (IsSpecPos(Mat[i][j]))
+                    Color (KColPos);
+            }
             cout << Mat[i][j];
         }
         cout << endl;

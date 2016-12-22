@@ -91,6 +91,19 @@ bool CheckWin (GameObjects & Objects, const int & GameMode)
     {
         return AreInContact(Objects[KTokenBlockMin], Objects[KTokenBlockMin+1]);
     }
+    if (GameMode == KGMClear)
+    {
+        char i (KTokenBlockMin);
+        while (ObjectExists(Objects, i) && ObjectExists(Objects, tolower(i)))
+        {
+            if (!AreInContact(Objects[i], Objects[tolower(i)]))
+            {
+                return false;
+            }
+            ++i;
+        }
+        return true;
+    }
     return false;
 } // CheckWin
 
@@ -107,9 +120,11 @@ int GetGamemode (const GameObjects & Objects)
         {
             GM = KGMBlocksMeet;
         }
-        else if (ObjectExists(Objects, KTokenBlockMin)
+        if (ObjectExists(Objects, KTokenBlockMin)
                  && ObjectExists(Objects, tolower(KTokenBlockMin)))
-                GM = KGMClear;
+        {
+            GM = KGMClear;
+        }
     }
     return GM;
 } // GetGamemode
@@ -117,7 +132,7 @@ int GetGamemode (const GameObjects & Objects)
 bool ObjectExists (const GameObjects & Objects, const char & Key)
 {
     return !(Objects.find(Key) == Objects.end());
-}
+} // ObjectExists
 
 void WriteRules (const char & GameMode)
 {
@@ -134,7 +149,7 @@ void WriteRules (const char & GameMode)
         cout << "Clear \nPush the blocks at their respective position" << endl;
         break;
     }
-}
+} // WriteRules
 
 bool AreInContact (const CPosition & Pos1, const CPosition & Pos2)
 {
