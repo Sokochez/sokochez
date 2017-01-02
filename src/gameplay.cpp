@@ -5,8 +5,8 @@ using namespace std;
 
 bool Move (CMatrix & Mat, GameObjects & Objects, CPosition & Pos, const int & DistX, const int & DistY)
 {
-    if (    (-DistY > int (Pos.second))
-            ||(-DistX > int (Pos.first))
+    if (    (-DistY > (int) Pos.second)
+            ||(-DistX > (int) Pos.first)
             ||(DistY + Pos.second >= Mat.size())
             ||(DistX + Pos.first >= Mat[Pos.second].size())
             ||(Mat[Pos.second + DistY][Pos.first + DistX] == KTokenWall))
@@ -153,11 +153,11 @@ void WriteRules (const char & GameMode)
 
 bool AreInContact (const CPosition & Pos1, const CPosition & Pos2)
 {
-    return ((Pos1.second == Pos2.second)
-            && (Pos1.first >= Pos2.first - 1)
-            && (Pos1.first <= Pos2.first + 1))
-            ||((Pos1.first == Pos2.first)
-            && (Pos1.second >= Pos2.second - 1)
-            && (Pos1.second <= Pos2.second + 1));
+    return ((( (int) Pos1.second == (int) Pos2.second)
+            && ((int) Pos1.first >= (int) Pos2.first - 1)
+            && ((int) Pos1.first <= (int) Pos2.first + 1))
+            ||(((int) Pos1.first == (int) Pos2.first)
+            && ((int) Pos1.second >= (int) Pos2.second - 1)
+            && ((int) Pos1.second <= (int) Pos2.second + 1)));
 
 } // AreInContact
