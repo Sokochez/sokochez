@@ -42,5 +42,4 @@ void Game (const string & FileName)
     ClearScreen ();
     cout << "Victory ! You won in " << nbmoves << " moves !" << endl;
     getchar ();
-    getchar ();
 } // Game
