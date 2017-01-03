@@ -7,8 +7,8 @@ using namespace std;
 void Game (const string & FileName)
 {
     set_input_mode ();
-    CMatrix map (LoadMap(FileName));
-    if (!CheckMapLoaded(map))
+    CMatrix map (LoadMap (FileName));
+    if (!CheckMapLoaded (map))
     {
         cout << "Error : Map not loaded correctly" << endl;
         return;
@@ -21,25 +21,26 @@ void Game (const string & FileName)
         return;
     }
 
-    ClearScreen();
+    ClearScreen ();
     char key;
     unsigned nbmoves (0);
     cout << "Loaded map " << FileName << endl;
 
-    WriteRules(gamemode);
+    WriteRules (gamemode);
     cout << "Press a key to begin" << endl;
     getchar();
 
-    while (!CheckWin(obj, gamemode))
+    while (!CheckWin (obj, gamemode))
     {
-        ClearScreen();
-        ShowMatrix(map);
+        ClearScreen ();
+        ShowMatrix (map);
         read (STDIN_FILENO, &key, 1);
-        Action(map, obj, key);
+        Action (map, obj, key);
         ++nbmoves;
     }
-    ClearScreen();
-    cout << "Victory ! You won in "<< nbmoves << " moves !" << endl;
-    getchar();
-    getchar();
+    reset_input_mode ();
+    ClearScreen ();
+    cout << "Victory ! You won in " << nbmoves << " moves !" << endl;
+    getchar ();
+    getchar ();
 } // Game

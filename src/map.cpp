@@ -8,11 +8,11 @@ CMatrix LoadMap (const string & FileName)
     CVLine line;
     CMatrix map;
     ifstream file (FileName);
-    if (file.is_open())
+    if (file.is_open ())
     {
-        for (;getline(file,line);)
+        for (; getline (file,line); )
         {
-            map.push_back(line);
+            map.push_back (line);
         }
     }
     return map;
@@ -21,13 +21,13 @@ CMatrix LoadMap (const string & FileName)
 GameObjects ParseMap (const CMatrix & Map)
 {
     GameObjects Objects;
-    for (unsigned i (0); i < Map.size(); ++i)
+    for (unsigned i (0); i < Map.size (); ++i)
     {
-        for (unsigned j (0); j < Map[i].size(); ++j)
+        for (unsigned j (0); j < Map[i].size (); ++j)
         {
-            if (    (Map[i][j] != KTokenWall)
-                    && (Map[i][j] != KTokenEmpty)
-                    && (Map[i][j] != KTokenBlock))
+            if ( (Map[i][j] != KTokenWall)
+              && (Map[i][j] != KTokenEmpty)
+              && (Map[i][j] != KTokenBlock))
             {
                 CPosition pos (j,i);
                 Objects [Map[i][j]] = pos;
@@ -39,18 +39,18 @@ GameObjects ParseMap (const CMatrix & Map)
 
 bool CheckMapLoaded (const CMatrix & Map)
 {
-    return (Map.size() > 0);
+    return (Map.size () > 0);
 } // CheckMapLoaded
 
 bool IsPlayer (const CMatrix & Mat, const CPosition & Pos)
 {
-    return ((Mat[Pos.second][Pos.first] == KTokenPlayer1)
+    return ( (Mat[Pos.second][Pos.first] == KTokenPlayer1)
             || (Mat[Pos.second][Pos.first] == KTokenPlayer2));
 } // IsPlayer
 
 bool IsSpecBlock (const char & Ch)
 {
-    return (((Ch <= KTokenBlockMax)
+    return ( ( (Ch <= KTokenBlockMax)
             && (Ch >= KTokenBlockMin))
             || (Ch == KTokenBlock));
 }

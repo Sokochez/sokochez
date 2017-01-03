@@ -14,9 +14,9 @@ void Color (const string & Col)
 
 void ShowMatrix (const CMatrix & Mat)
 {
-    for (unsigned i (0); i < Mat.size(); ++i)
+    for (unsigned i (0); i < Mat.size (); ++i)
     {
-        for (unsigned j (0); j < Mat[i].size(); ++j)
+        for (unsigned j (0); j < Mat[i].size (); ++j)
         {
             if (    (0 == j) || (Mat[i][j] != Mat[i][j-1]))
             {
@@ -38,9 +38,9 @@ void ShowMatrix (const CMatrix & Mat)
                     Color (KColBlock);
                     break;
                 }
-                if (IsSpecBlock(Mat[i][j]))
+                if (IsSpecBlock (Mat[i][j]))
                     Color (KColObj);
-                if (IsSpecPos(Mat[i][j]))
+                if (IsSpecPos (Mat[i][j]))
                     Color (KColPos);
             }
             cout << Mat[i][j];

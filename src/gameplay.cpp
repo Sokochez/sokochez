@@ -7,8 +7,8 @@ bool Move (CMatrix & Mat, GameObjects & Objects, CPosition & Pos, const int & Di
 {
     if (    (-DistY > (int) Pos.second)
             ||(-DistX > (int) Pos.first)
-            ||(DistY + Pos.second >= Mat.size())
-            ||(DistX + Pos.first >= Mat[Pos.second].size())
+            ||(DistY + Pos.second >= Mat.size ())
+            ||(DistX + Pos.first >= Mat[Pos.second].size ())
             ||(Mat[Pos.second + DistY][Pos.first + DistX] == KTokenWall))
     {
         return false;
@@ -28,7 +28,7 @@ bool Move (CMatrix & Mat, GameObjects & Objects, CPosition & Pos, const int & Di
      * if block moves
      * move player
      */
-    if (    IsPlayer(Mat, Pos)
+    if (    IsPlayer (Mat, Pos)
             && (Mat[NewPos.second][NewPos.first] == KTokenBlock))
     {
         if (Move (Mat, Objects, NewPos, DistX, DistY))
@@ -36,8 +36,8 @@ bool Move (CMatrix & Mat, GameObjects & Objects, CPosition & Pos, const int & Di
             return Move (Mat, Objects, Pos, DistX, DistY);
         }
     }
-    else if (IsPlayer(Mat, Pos)
-             && (IsSpecBlock(Mat[NewPos.second][NewPos.first])))
+    else if (IsPlayer (Mat, Pos)
+             && (IsSpecBlock (Mat[NewPos.second][NewPos.first])))
     {
         if (Move (Mat, Objects, Objects[Mat[NewPos.second][NewPos.first]], DistX, DistY))
         {
@@ -94,9 +94,9 @@ bool CheckWin (GameObjects & Objects, const int & GameMode)
     if (GameMode == KGMClear)
     {
         char i (KTokenBlockMin);
-        while (ObjectExists(Objects, i) && ObjectExists(Objects, tolower(i)))
+        while (ObjectExists (Objects, i) && ObjectExists (Objects, tolower(i)))
         {
-            if (!AreInContact(Objects[i], Objects[tolower(i)]))
+            if (!AreInContact (Objects[i], Objects[tolower(i)]))
             {
                 return false;
             }
@@ -110,18 +110,18 @@ bool CheckWin (GameObjects & Objects, const int & GameMode)
 int GetGamemode (const GameObjects & Objects)
 {
     int GM (KGMNone);
-    if (    ObjectExists(Objects, KTokenPlayer1)
-            && ObjectExists(Objects, KTokenPlayer2))
+    if (    ObjectExists (Objects, KTokenPlayer1)
+            && ObjectExists (Objects, KTokenPlayer2))
     {
         GM = KGMPlayersMeet;
 
-        if (ObjectExists(Objects, KTokenBlockMin)
-                && (ObjectExists(Objects, KTokenBlockMin + 1)))
+        if (ObjectExists (Objects, KTokenBlockMin)
+                && (ObjectExists (Objects, KTokenBlockMin + 1)))
         {
             GM = KGMBlocksMeet;
         }
-        if (ObjectExists(Objects, KTokenBlockMin)
-                 && ObjectExists(Objects, tolower(KTokenBlockMin)))
+        if (ObjectExists (Objects, KTokenBlockMin)
+                 && ObjectExists (Objects, tolower(KTokenBlockMin)))
         {
             GM = KGMClear;
         }
@@ -131,7 +131,7 @@ int GetGamemode (const GameObjects & Objects)
 
 bool ObjectExists (const GameObjects & Objects, const char & Key)
 {
-    return !(Objects.find(Key) == Objects.end());
+    return !(Objects.find (Key) == Objects.end ());
 } // ObjectExists
 
 void WriteRules (const char & GameMode)

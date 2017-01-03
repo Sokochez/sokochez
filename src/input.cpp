@@ -1,22 +1,30 @@
-#include <termios.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <termios.h>
 
+/* Use this variable to remember original terminal attributes. */
 
+struct termios saved_attributes;
 
+void reset_input_mode (void)
+{
+  tcsetattr (STDIN_FILENO, TCSANOW, &saved_attributes);
+}
 
-//http://www.gnu.org/software/libc/manual/html_node/Noncanon-Example.html
 void set_input_mode (void)
 {
   struct termios tattr;
-
   /* Make sure stdin is a terminal. */
   if (!isatty (STDIN_FILENO))
-  {
+    {
       fprintf (stderr, "Not a terminal.\n");
       exit (EXIT_FAILURE);
-  }
+    }
+
+  /* Save the terminal attributes so we can restore them later. */
+  tcgetattr (STDIN_FILENO, &saved_attributes);
+  atexit (reset_input_mode);
 
   /* Set the funny terminal modes. */
   tcgetattr (STDIN_FILENO, &tattr);
