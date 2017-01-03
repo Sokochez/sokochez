@@ -1,9 +1,12 @@
 #include <game.h>
+#include <istream>
+#include "input.h"
 
 using namespace std;
 
 void Game (const string & FileName)
 {
+    set_input_mode ();
     CMatrix map (LoadMap(FileName));
     if (!CheckMapLoaded(map))
     {
@@ -31,7 +34,7 @@ void Game (const string & FileName)
     {
         ClearScreen();
         ShowMatrix(map);
-        cin >> key;
+        read (STDIN_FILENO, &key, 1);
         Action(map, obj, key);
         ++nbmoves;
     }

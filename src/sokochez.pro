@@ -7,10 +7,12 @@ SOURCES += main.cpp \
     map.cpp \
     game.cpp \
     display.cpp \
-    gameplay.cpp
+    gameplay.cpp \
+    input.cpp
 
 HEADERS += \
     map.h \
     game.h \
     display.h \
-    gameplay.h
+    gameplay.h \
+    input.h
