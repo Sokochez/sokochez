@@ -14,7 +14,7 @@ const char KP2MoveUp = 'o';
 const char KP2MoveDown = 'l';
 const char KP2MoveLeft = 'k';
 const char KP2MoveRight = 'm';
-const char KMenu = 'y';
+const char KKeyReset = 'v';
 
 //Gamemodes
 const int KGMNone (0);

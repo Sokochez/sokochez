@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <termios.h>
 
+
 /* Use this variable to remember original terminal attributes. */
 
 struct termios saved_attributes;

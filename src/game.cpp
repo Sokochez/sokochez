@@ -6,7 +6,6 @@ using namespace std;
 
 void Game (const string & FileName)
 {
-    set_input_mode ();
     CMatrix map (LoadMap (FileName));
     if (!CheckMapLoaded (map))
     {
@@ -35,10 +34,14 @@ void Game (const string & FileName)
         ClearScreen ();
         ShowMatrix (map);
         read (STDIN_FILENO, &key, 1);
+        if (KKeyReset == key)
+        {
+            Game (FileName);
+            return;
+        }
         Action (map, obj, key);
         ++nbmoves;
     }
-    reset_input_mode ();
     ClearScreen ();
     cout << "Victory ! You won in " << nbmoves << " moves !" << endl;
     getchar ();
