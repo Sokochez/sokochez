@@ -1,6 +1,7 @@
 #include <game.h>
 #include <istream>
 #include "input.h"
+#include <cstdlib>
 
 using namespace std;
 
@@ -34,10 +35,32 @@ void Game (const string & FileName)
         ClearScreen ();
         ShowMatrix (map);
         read (STDIN_FILENO, &key, 1);
-        if (KKeyReset == key)
+        if (KMenu == key)
         {
-            Game (FileName);
-            return;
+            do
+            {
+                DispMenu ();
+                read (STDIN_FILENO, &key, 1);
+                switch (key)
+                {
+                case KKeyReset:
+                    Game (FileName);
+                    return;
+                    break;
+                case KSkip:
+                    return;
+                    break;
+                case KExit:
+                    exit(0);
+                    break;
+                default:
+                    break;
+                }
+
+            } while (key != KMenu);
+            ClearScreen ();
+            ShowMatrix (map);
+            read (STDIN_FILENO, &key, 1);
         }
         Action (map, obj, key);
         ++nbmoves;
@@ -46,3 +69,12 @@ void Game (const string & FileName)
     cout << "Victory ! You won in " << nbmoves << " moves !" << endl;
     getchar ();
 } // Game
+
+void DispMenu ()
+{
+    ClearScreen ();
+    cout << "1) Reset"   << endl
+         << "2) Skip this map" << endl
+         << "3) Exit" << endl;
+
+}
