@@ -73,8 +73,8 @@ void Game (const string & FileName)
 void DispMenu ()
 {
     ClearScreen ();
-    cout << "1) Reset"   << endl
-         << "2) Skip this map" << endl
-         << "3) Exit" << endl;
+    cout << KKeyReset << ") Reset"   << endl
+         << KSkip << ") Skip this map" << endl
+         << KExit << ") Exit" << endl;
 
 }
