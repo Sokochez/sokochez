@@ -13,6 +13,9 @@ const string KJaune   ("33");
 const string KBleu    ("34");
 const string KMagenta ("35");
 const string KCyan    ("36");
+const string KUnderLine ("4");
+const string KBold  ("1");
+
 
 const string KColWall (KReset);
 const string KColP1 (KRouge);
