@@ -58,9 +58,7 @@ void Game (const string & FileName)
                 }
 
             } while (key != KMenu);
-            ClearScreen ();
-            ShowMatrix (map);
-            read (STDIN_FILENO, &key, 1);
+            continue;
         }
         Action (map, obj, key);
         ++nbmoves;
