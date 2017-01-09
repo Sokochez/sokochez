@@ -2,11 +2,13 @@
 #include <istream>
 #include "input.h"
 #include <cstdlib>
+#include <string>
 
 using namespace std;
 
 void Game (const string & FileName)
 {
+    string solution;
     CMatrix map (LoadMap (FileName));
     if (!CheckMapLoaded (map))
     {
@@ -60,11 +62,14 @@ void Game (const string & FileName)
             } while (key != KMenu);
             continue;
         }
+        solution.push_back (key);
         Action (map, obj, key);
         ++nbmoves;
     }
     ClearScreen ();
     cout << "Victory ! You won in " << nbmoves << " moves !" << endl;
+    cout  << "your solution is" << endl << solution << endl;
+
     getchar ();
 } // Game
 
