@@ -62,9 +62,11 @@ void Game (const string & FileName)
             } while (key != KMenu);
             continue;
         }
-        solution.push_back (key);
-        Action (map, obj, key);
-        ++nbmoves;
+        if (Action(map, obj, key))
+        {
+            solution.push_back (key);
+            ++nbmoves;
+        }
     }
     ClearScreen ();
     cout << "Victory ! You won in " << nbmoves << " moves !" << endl;

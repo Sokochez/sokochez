@@ -48,7 +48,7 @@ bool Move (CMatrix & Mat, GameObjects & Objects, CPosition & Pos, const int & Di
 } //Move
 
 
-void Action (CMatrix & Mat, GameObjects & Objects, const char & Key)
+bool Action (CMatrix & Mat, GameObjects & Objects, const char & Key)
 {
     switch (Key) {
     case KP1MoveUp:
@@ -76,9 +76,9 @@ void Action (CMatrix & Mat, GameObjects & Objects, const char & Key)
         Move (Mat, Objects,  Objects[KTokenPlayer2], 1, 0);
         break;
     default:
-        cout << "Invalid key" << endl;
-        break;
+        return false;
     }
+    return true;
 } // Action
 
 bool CheckWin (GameObjects & Objects, const int & GameMode)

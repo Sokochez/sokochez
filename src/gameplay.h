@@ -44,8 +44,15 @@ bool Move (CMatrix & Mat, GameObjects & Objects, CPosition & Pos, const int & Di
  * @param Objects The Objects
  * @param Key The Key
  */
+/**
+ * @brief Does something depending on the key
+ * @param Mat The matrix
+ * @param Objects The Objects
+ * @param Key The Key
+ * @return true if the action is successful
+ */
 
-void Action (CMatrix & Mat, GameObjects & Objects, const char & Key);
+bool Action (CMatrix & Mat, GameObjects & Objects, const char & Key);
 
 /**
  * @brief Checks if there is a win
