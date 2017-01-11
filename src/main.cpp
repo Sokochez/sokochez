@@ -9,15 +9,21 @@ using namespace std;
 int main (int argc, char *argv[])
 {
     set_input_mode ();
-    if (argc < 2)
+    if ((argc < 2) || (("-e" == (string) argv[1]) && (argc < 3)))
     {
         cout << "Argument(s) missing : At least one map file name required" << endl;
         return 0;
     }
-
-    for (int i (1); i < argc; ++i)
+    if ("-e" == (string) argv[1])
     {
-        Game (argv[i]);
+        cout << "EDITOR !" << endl;
+    }
+    else
+    {
+        for (int i (1); i < argc; ++i)
+        {
+            Game (argv[i]);
+        }
     }
     return 0;
 }
