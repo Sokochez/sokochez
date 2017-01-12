@@ -3,6 +3,7 @@
 #include <vector>
 #include <game.h>
 #include "input.h"
+#include "editor.h"
 
 using namespace std;
 
@@ -17,6 +18,11 @@ int main (int argc, char *argv[])
     if ("-e" == (string) argv[1])
     {
         cout << "EDITOR !" << endl;
+        for (int i (2); i < argc; ++i)
+        {
+            cout << i << endl;
+            Editor (argv[i]);
+        }
     }
     else
     {
