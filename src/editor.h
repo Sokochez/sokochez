@@ -6,7 +6,7 @@
 
 using namespace std;
 
-const string KTokenCursor("53");
+const string KCursor ("7");
 
 const unsigned KEditEmpty (1);
 const unsigned KEditWall (2);
@@ -27,12 +27,12 @@ void Editor (const string & FileName);
 
 void PlaceToken (CMatrix & Mat, const CPosition & Pos,
                  const char & TokenKey, vector <char> & AvailableTokens);
-void EditorAction (CMatrix & Mat, CPosition & Cursor, char & Key, vector<char> &AvailableTokens);
+void EditorAction (CMatrix & Mat,CPosition & Cursor, const char & Key, vector <char> & AvailableTokens);
 
 void MoveCursor (CMatrix & Mat, CPosition & Pos,
                  const int & DistX, const int & DistY);
 
-void DispEditor (CMatrix & Mat, CPosition & Cursor,
+void DispEditor (CMatrix & Mat, const CPosition &Cursor,
                  const vector <char> & Tokens);
 
 #endif // EDITOR_H
