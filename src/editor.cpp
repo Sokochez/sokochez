@@ -5,6 +5,29 @@
 #include "display.h"
 #include "editor.h"
 #include <unistd.h>
+#include "gameplay.h"
+
+bool ActionEditor (CMatrix & Mat, GameObjects & Objects, const char & Key)
+{
+    switch (Key) {
+    case KEditorUp:
+        Move (Mat, Objects, Objects[KTokenEditor], 0, -1);
+        break;
+    case KEditorDown:
+        Move (Mat, Objects,  Objects[KTokenEditor], 0, 1);
+        break;
+    case KEditorLeft:
+        Move (Mat, Objects,  Objects[KTokenEditor], -1, 0);
+        break;
+    case KEditorRight:
+        Move (Mat, Objects,  Objects[KTokenEditor], 1, 0);
+        break;
+    default:
+        return false;
+    }
+    return true;
+}
+
 
 void PlaceToken (CMatrix & Mat, const CPosition & Pos, const char & Token)
 {
@@ -47,7 +70,6 @@ char MenuEditor (char & Key)
 
 void Editor (const string & FileName)
 {
-    char key;
     CMatrix map (LoadMap (FileName));
     cout << "map loaded" << endl;
     ofstream ofs (FileName);
@@ -56,13 +78,14 @@ void Editor (const string & FileName)
         cout << "Cannot open this file" << endl;
         return;
     }
+
     while (true)
     {
-        char TokenSelected;
-        read (STDIN_FILENO, &key, 1);
         ClearScreen ();
         ShowMatrix (map);
-        MenuEditor (key);
+        read (STDIN_FILENO, &key, 1);
+        ActionEditor(map, obj, key);
+
 
 
     }
