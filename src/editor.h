@@ -2,29 +2,37 @@
 #define EDITOR_H
 #include <map.h>
 #include <cctype>
+#include <string>
 
 using namespace std;
-const char KEditorUp = 'z';
-const char KEditorDown = 's';
-const char KEditorLeft = 'q';
-const char KEditorRight = 'd';
-const char KValid= '4';
 
+const string KTokenCursor("53");
 
-const char KTokenEditor('X');
-const char KEditEmptyToken('1');
-const char KEditWallToken('2');
-const char KEditBlockToken('3');
-const char KEditPLayersToken('4');
-const char KEditSpecialBlocks('5');
-const char KEditSpecialLocations('6');
+const unsigned KEditEmpty (1);
+const unsigned KEditWall (2);
+const unsigned KEditBlock (3);
+const unsigned KEditPlayer1 (4);
+const unsigned KEditPlayer2 (5);
+const unsigned KEditSpecialBlocks (6);
+const unsigned KEditSpecialLocations (7);
 
 
 
 
 /**
- * @brief Editor Lauch the editor mod
- * @param FileName The name of the input file
+ * @brief Editor Starts the editor
+ * @param FileName The name of the file
  */
 void Editor (const string & FileName);
+
+void PlaceToken (CMatrix & Mat, const CPosition & Pos,
+                 const char & TokenKey, vector <char> & AvailableTokens);
+void EditorAction (CMatrix & Mat, CPosition & Cursor, char & Key, vector<char> &AvailableTokens);
+
+void MoveCursor (CMatrix & Mat, CPosition & Pos,
+                 const int & DistX, const int & DistY);
+
+void DispEditor (CMatrix & Mat, CPosition & Cursor,
+                 const vector <char> & Tokens);
+
 #endif // EDITOR_H
