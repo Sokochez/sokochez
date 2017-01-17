@@ -13,69 +13,61 @@ unsigned ChToDigit (const char & Ch)
     if ((Ch >= '0') || (Ch <= '9'))
         return Ch - '0';
     else
-        return 0;
+        return 10;
+}
+
+bool IsCommonToken (const char & Ch)
+{
+    return ((Ch == KTokenBlock) || (Ch == KTokenEmpty)
+            || (Ch == KTokenWall));
 }
 
 void PlaceToken (CMatrix & Mat, const CPosition & Pos,
-                   const char & TokenKey, vector <char> & AvailableTokens)
+                 const char & TokenKey, vector <char> & AvailableTokens)
 {
     char toplace = AvailableTokens[ChToDigit(TokenKey)];
-    if (AvailableTokens[ChToDigit(TokenKey)] == KTokenPlayer1)
-        AvailableTokens[ChToDigit(TokenKey)] = KTokenEmpty;
-    else if (AvailableTokens[ChToDigit(TokenKey)] == KTokenPlayer2)
-        AvailableTokens[ChToDigit(TokenKey)] = KTokenEmpty;
-    else if ((AvailableTokens[ChToDigit(TokenKey)] < KTokenBlockMax )
-        && (AvailableTokens[ChToDigit(TokenKey)] >= KTokenBlockMin))
+    if ((ChToDigit(TokenKey) == KEditBlock) || (ChToDigit(TokenKey) == KEditEmpty)
+        || (ChToDigit(TokenKey) == KEditWall))
     {
-        ++AvailableTokens[ChToDigit(TokenKey)];
-    }
-    else if ((AvailableTokens[ChToDigit(TokenKey)] < tolower(KTokenBlockMax) )
-        && (AvailableTokens[ChToDigit(TokenKey)] >= tolower(KTokenBlockMin)))
-    {
-        ++AvailableTokens[ChToDigit(TokenKey)];
-    }
-    else if ((AvailableTokens[ChToDigit(TokenKey)] < KTokenBlockMax )
-        && (AvailableTokens[ChToDigit(TokenKey)] >= KTokenBlockMin))
-    {
-        ++AvailableTokens[ChToDigit(TokenKey)];
-    }
-    else if (AvailableTokens[ChToDigit(TokenKey)] == KTokenEmpty)
-    {
-        if (Mat[Pos.second][Pos.first] == KTokenPlayer1)
+        if (Mat[Pos.second][Pos.first] >= AvailableTokens[KEditSpecialBlocks] - 2)
+            --AvailableTokens[KEditSpecialBlocks];
+        else if (Mat[Pos.second][Pos.first] >= AvailableTokens[KEditSpecialLocations] - 2)
+            --AvailableTokens[KEditSpecialLocations];
+        else if (Mat[Pos.second][Pos.first] == KTokenPlayer1)
             AvailableTokens[KEditPlayer1] = KTokenPlayer1;
         else if (Mat[Pos.second][Pos.first] == KTokenPlayer2)
             AvailableTokens[KEditPlayer2] = KTokenPlayer2;
-        else if (Mat[Pos.second][Pos.first] == AvailableTokens[KEditSpecialBlocks] - 1)
-            --AvailableTokens[KEditSpecialBlocks];
-        else if (Mat[Pos.second][Pos.first] == AvailableTokens[KEditSpecialLocations] - 1)
-            --AvailableTokens[KEditSpecialLocations];
-        else if ((AvailableTokens[ChToDigit(TokenKey)] == KTokenBlock)
-            || (AvailableTokens[ChToDigit(TokenKey)] == KTokenWall)){}
+        else if (IsCommonToken(Mat[Pos.second][Pos.first]))
+            ;
         else return;
     }
-    else if ((AvailableTokens[ChToDigit(TokenKey)] == KTokenBlock)
-        || (AvailableTokens[ChToDigit(TokenKey)] == KTokenWall)){}
+    else if (IsCommonToken(Mat[Pos.second][Pos.first]))
+    {
+        if (AvailableTokens[ChToDigit(TokenKey)] == KTokenPlayer1)
+            AvailableTokens[KEditPlayer1] = KTokenEmpty;
+        else if (AvailableTokens[ChToDigit(TokenKey)] == KTokenPlayer2)
+            AvailableTokens[KEditPlayer2] = KTokenEmpty;
+        else if (IsSpecBlock(AvailableTokens[ChToDigit(TokenKey)]))
+            ++AvailableTokens[KEditSpecialBlocks];
+        else if (IsSpecPos(AvailableTokens[ChToDigit(TokenKey)]))
+            ++AvailableTokens[KEditSpecialLocations];
+        else return;
+    }
     else return;
     Mat[Pos.second][Pos.first] = toplace;
 }
 
 void EditorAction (CMatrix & Mat,CPosition & Cursor,const char & Key, vector <char> & AvailableTokens)
 {
-    switch (Key) {
-    case KP1MoveUp:
+    if (Key == KP1MoveUp)
         MoveCursor(Mat, Cursor, 0, -1);
-        break;
-    case KP1MoveDown:
+    else if (Key == KP1MoveDown)
         MoveCursor(Mat, Cursor, 0, 1);
-        break;
-    case KP1MoveLeft:
+    else if (Key == KP1MoveLeft)
         MoveCursor(Mat, Cursor, -1, 0);
-        break;
-    case KP1MoveRight:
+    else if (Key == KP1MoveRight)
         MoveCursor(Mat, Cursor, 1, 0);
-        break;
-    }
-    if (ChToDigit(Key) >= 1)
+    else if (ChToDigit(Key) <= 10)
         PlaceToken(Mat, Cursor, Key, AvailableTokens);
 }
 

@@ -38,7 +38,7 @@ void ShowMatrix (const CMatrix & Mat)
                     Color (KColBlock);
                     break;
                 }
-                if (IsSpecBlock (Mat[i][j]))
+                if (IsBlock (Mat[i][j]))
                     Color (KColObj);
                 if (IsSpecPos (Mat[i][j]))
                     Color (KColPos);

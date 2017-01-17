@@ -37,7 +37,7 @@ bool Move (CMatrix & Mat, GameObjects & Objects, CPosition & Pos, const int & Di
         }
     }
     else if (IsPlayer (Mat, Pos)
-             && (IsSpecBlock (Mat[NewPos.second][NewPos.first])))
+             && (IsBlock (Mat[NewPos.second][NewPos.first])))
     {
         if (Move (Mat, Objects, Objects[Mat[NewPos.second][NewPos.first]], DistX, DistY))
         {
