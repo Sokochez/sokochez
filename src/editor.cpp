@@ -29,9 +29,9 @@ void PlaceToken (CMatrix & Mat, const CPosition & Pos,
     if ((ChToDigit(TokenKey) == KEditBlock) || (ChToDigit(TokenKey) == KEditEmpty)
         || (ChToDigit(TokenKey) == KEditWall))
     {
-        if (Mat[Pos.second][Pos.first] >= AvailableTokens[KEditSpecialBlocks] - 2)
+        if (Mat[Pos.second][Pos.first] >= AvailableTokens[KEditSpecialBlocks] - 1)
             --AvailableTokens[KEditSpecialBlocks];
-        else if (Mat[Pos.second][Pos.first] >= AvailableTokens[KEditSpecialLocations] - 2)
+        else if (Mat[Pos.second][Pos.first] >= AvailableTokens[KEditSpecialLocations] - 1)
             --AvailableTokens[KEditSpecialLocations];
         else if (Mat[Pos.second][Pos.first] == KTokenPlayer1)
             AvailableTokens[KEditPlayer1] = KTokenPlayer1;
@@ -57,7 +57,8 @@ void PlaceToken (CMatrix & Mat, const CPosition & Pos,
     Mat[Pos.second][Pos.first] = toplace;
 }
 
-void EditorAction (CMatrix & Mat,CPosition & Cursor,const char & Key, vector <char> & AvailableTokens)
+void EditorAction (CMatrix & Mat,CPosition & Cursor,const char & Key,
+                   vector <char> & AvailableTokens, const string & FileName)
 {
     if (Key == KP1MoveUp)
         MoveCursor(Mat, Cursor, 0, -1);
@@ -67,8 +68,48 @@ void EditorAction (CMatrix & Mat,CPosition & Cursor,const char & Key, vector <ch
         MoveCursor(Mat, Cursor, -1, 0);
     else if (Key == KP1MoveRight)
         MoveCursor(Mat, Cursor, 1, 0);
-    else if (ChToDigit(Key) <= 10)
+    else if (ChToDigit(Key) <= 7)
         PlaceToken(Mat, Cursor, Key, AvailableTokens);
+    else if (ChToDigit(Key) == 8)
+        OptimizeMatrix (Mat, Cursor);
+    else if (ChToDigit(Key) == 9)
+        SaveMatrix(Mat, FileName);
+}
+
+void OptimizeMatrix (CMatrix & Mat, CPosition & Cursor)
+{
+    unsigned maxX (0);
+
+    for (unsigned i (0); i < Mat.size(); ++i)
+        for (unsigned j (0); j < Mat[i].size(); ++j)
+        {
+            if ((j > maxX) && (Mat[i][j] != KTokenEmpty))
+                maxX = j;
+        }
+    for (unsigned i (0); i < Mat.size(); ++i)
+        Mat[i].resize(maxX + 1);
+    unsigned j (0);
+    unsigned i (Mat.size() - 1);
+    while (Mat[i][j] == KTokenEmpty)
+    {
+        j++;
+        if (j > Mat[i].size() - 1)
+        {
+            if (i == 0) break;
+            i--;
+            j = 0;
+            Mat.resize(Mat.size() - 1);
+        }
+    }
+    if (Mat.size() == 0)
+    {
+        string line;
+        line.push_back(KTokenEmpty);
+        Mat.push_back(line);
+    }
+    Cursor.first = 0;
+    Cursor.second = 0;
+
 }
 
 void MoveCursor (CMatrix & Mat, CPosition & Pos,
@@ -90,10 +131,26 @@ void MoveCursor (CMatrix & Mat, CPosition & Pos,
 
 }
 
+void SaveMatrix (const CMatrix & Mat, const string & FileName)
+{
+    ofstream ofs (FileName);
+    if (!ofs.is_open ())
+    {
+        cerr << "Cannot open this file" << endl;
+        return;
+    }
+    for (string line : Mat)
+    {
+        ofs << line << endl;
+    }
+    ofs.close();
+}
+
 void DispEditor (CMatrix & Mat, const CPosition & Cursor, const vector <char> & Tokens)
 {
-    for (unsigned i (0); i < Tokens.size()-1; ++i)
-        cout << Tokens[i+1] << '|';
+    cout << "[8 - Optimize; 9 - Save; 0 - Exit]" << endl;
+    for (unsigned i (1); i < Tokens.size(); ++i)
+        cout << Tokens[i] << '|';
     cout << endl;
     for (unsigned i (1); i < Tokens.size(); ++i)
         cout << i << '|';
@@ -115,8 +172,9 @@ void DispEditor (CMatrix & Mat, const CPosition & Cursor, const vector <char> & 
 
 void Editor (const string & FileName)
 {
-    vector <char> tokens {'|', KTokenEmpty, KTokenWall,KTokenBlock,KTokenPlayer1,KTokenPlayer2,
-                     KTokenBlockMin, 'a'};
+    char blockmin = tolower (KTokenBlockMin);
+    vector <char> tokens {KTokenEmpty, KTokenEmpty, KTokenWall,KTokenBlock,KTokenPlayer1,KTokenPlayer2,
+                     KTokenBlockMin, blockmin};
     CMatrix map (LoadMap (FileName));
     if (!CheckMapLoaded(map))
     {
@@ -128,21 +186,18 @@ void Editor (const string & FileName)
     ofstream ofs (FileName);
     if (!ofs.is_open ())
     {
-        cout << "Cannot open this file" << endl;
+        cerr << "Cannot open this file" << endl;
         return;
     }
+    ofs.close();
 
-    while (key != '0')
+    while (true)
     {
         ClearScreen ();
         DispEditor(map, cursor, tokens);
         read (STDIN_FILENO, &key, 1);
-        EditorAction(map, cursor, key, tokens);
+        if (key == '0') break;
+        EditorAction(map, cursor, key, tokens, FileName);
     }
-    for (string line : map)
-    {
-        ofs << line << endl;
-    }
-
 }
 

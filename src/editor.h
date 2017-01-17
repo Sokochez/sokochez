@@ -27,12 +27,16 @@ void Editor (const string & FileName);
 
 void PlaceToken (CMatrix & Mat, const CPosition & Pos,
                  const char & TokenKey, vector <char> & AvailableTokens);
-void EditorAction (CMatrix & Mat,CPosition & Cursor, const char & Key, vector <char> & AvailableTokens);
+void EditorAction (CMatrix & Mat,CPosition & Cursor, const char & Key,
+                   vector <char> & AvailableTokens, const string & FileName);
 
-void MoveCursor (CMatrix & Mat, CPosition & Pos,
+void MoveCursor (CMatrix &Mat, CPosition & Pos,
                  const int & DistX, const int & DistY);
+void SaveMatrix (const CMatrix & Mat, const string & FileName);
 
 void DispEditor (CMatrix & Mat, const CPosition &Cursor,
                  const vector <char> & Tokens);
+void OptimizeMatrix (CMatrix & Mat, CPosition & Cursor);
+
 
 #endif // EDITOR_H
