@@ -46,6 +46,12 @@ Les fonctionnalités que nous avons ajoutées sont les suivantes :
     \item Mode non-canonique
     \item Affichage de la solution utilisée en fin de niveau sous forme de chaîne de caractères
     \item Affichage du nombre de coups effectués pour réussir le niveau.
+    \item Éditeur de niveaux comprenant :
+    \begin{enumerate}
+        \item Une jolie barre d'objets à placer
+        \item Une touche d'optimisation du niveau enlevant les bordures inutiles
+        \item Une touche de sauvegarde
+    \end{enumerate}
 \end{itemize}
 
 \section{Comment jouer}
@@ -63,6 +69,14 @@ Plusieurs niveaux peuvent être passés en arguments, ils seront lancés à la s
 Il faut ensuite lire les règles qui sont affichées au chargement du niveau.
 Les touches de déplacement sont \emph{zqsd} pour le joueur 1 et \emph{oklm} pour le joueur 2.
 La touche de menu est \emph{v}.
+
+\section{Éditeur de niveaux}
+Pour lancer l'éditeur de niveaux, le premier argument passé au programme doit être \emph{-e}.
+\begin{lstlisting}
+./jeu -e niveau1.txt
+./jeu -e niveau1.txt niveau2.txt
+\end{lstlisting}
+Cet éditeur permet de créer des niveaux adaptés au jeu. Cependant il ne permet pas de charger des niveaux en l'état actuel, mais rien ne vous empêche d'ouvrir un niveau existant avec un éditeur de texte.
 
 \begin{center}
     \includegraphics[width=200px,height=200px]{logo.png}

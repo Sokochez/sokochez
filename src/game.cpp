@@ -12,14 +12,14 @@ void Game (const string & FileName)
     CMatrix map (LoadMap (FileName));
     if (!CheckMapLoaded (map))
     {
-        cout << "Error : Map not loaded correctly" << endl;
+        cerr << "Error : Map not loaded correctly" << endl;
         return;
     }
     GameObjects obj (ParseMap(map));
     int gamemode (GetGamemode(obj));
     if (gamemode == KGMNone)
     {
-        cout << "Error : Gamemode could not be determined" << endl;
+        cerr << "Error : Gamemode could not be determined" << endl;
         return;
     }
 

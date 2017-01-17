@@ -175,20 +175,24 @@ void Editor (const string & FileName)
     char blockmin = tolower (KTokenBlockMin);
     vector <char> tokens {KTokenEmpty, KTokenEmpty, KTokenWall,KTokenBlock,KTokenPlayer1,KTokenPlayer2,
                      KTokenBlockMin, blockmin};
-    CMatrix map (LoadMap (FileName));
-    if (!CheckMapLoaded(map))
+    ifstream ifs (FileName);
+    if (ifs.is_open())
     {
-        map.push_back(" ");
+        cerr << "Error : This map already exists" << endl;
+        return;
     }
-    CPosition cursor (0,0);
-    char key;
-    cout << "map loaded" << endl;
     ofstream ofs (FileName);
     if (!ofs.is_open ())
     {
-        cerr << "Cannot open this file" << endl;
+        cerr << "Error : Cannot open this file" << endl;
         return;
     }
+    CMatrix map;
+    map.push_back(" ");
+    CPosition cursor (0,0);
+    char key;
+    cout << "map loaded" << endl;
+
     ofs.close();
 
     while (true)
