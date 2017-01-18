@@ -20,10 +20,10 @@ const char KSkip = '2';
 const char KExit = '3';
 
 //Gamemodes
-const int KGMNone (0);
-const int KGMPlayersMeet (1);
-const int KGMBlocksMeet (2);
-const int KGMClear (3);
+const int KGMNone = 0;
+const int KGMPlayersMeet = 1;
+const int KGMBlocksMeet = 2;
+const int KGMClear = 3;
 
 /**
  * @brief Moves a token located at some position at another position

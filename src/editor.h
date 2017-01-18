@@ -6,15 +6,15 @@
 
 using namespace std;
 
-const string KCursor ("7");
+const string KCursor = "7";
 
-const unsigned KEditEmpty (1);
-const unsigned KEditWall (2);
-const unsigned KEditBlock (3);
-const unsigned KEditPlayer1 (4);
-const unsigned KEditPlayer2 (5);
-const unsigned KEditSpecialBlocks (6);
-const unsigned KEditSpecialLocations (7);
+const unsigned KEditEmpty = 1;
+const unsigned KEditWall = 2;
+const unsigned KEditBlock = 3;
+const unsigned KEditPlayer1 = 4;
+const unsigned KEditPlayer2 = 5;
+const unsigned KEditSpecialBlocks = 6;
+const unsigned KEditSpecialLocations = 7;
 
 
 
@@ -91,5 +91,20 @@ void OptimizeMatrix (CMatrix & Mat, CPosition & Cursor);
  * @param Tokens the vector of available tokens to fill
  */
 void ParseMapEditor (const CMatrix & Mat, vector<char> & Tokens);
+
+/**
+ * @brief Returns if the character can be easily removed / is a common token
+ * @param Ch the character to check
+ * @return true if the character can be easily removed / is a common token else false
+ */
+bool IsCommonToken (const char & Ch);
+
+/**
+ * @brief Transforms a char into a digit (0-9)
+ * @param Ch the char
+ * @return a digit from 0 to 9 if the conversion was successfull else 10
+ */
+
+unsigned ChToDigit (const char & Ch);
 
 #endif // EDITOR_H

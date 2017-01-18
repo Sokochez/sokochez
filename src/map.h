@@ -23,20 +23,20 @@ typedef pair <unsigned, unsigned> CPosition;
 typedef map <char, CPosition> GameObjects;
 
 //Objects
-const char KTokenPlayer1 ('1');
-const char KTokenPlayer2 ('2');
+const char KTokenPlayer1 = '1';
+const char KTokenPlayer2 = '2';
 
 /* Special blocks will be comprised between these values
  * and their destination if they have one will be the
  * char of the block in lowercase */
 
-const char KTokenBlockMin ('A');
-const char KTokenBlockMax ('H');
+const char KTokenBlockMin = 'A';
+const char KTokenBlockMax = 'H';
 
 //Not Objects
-const char KTokenWall ('#');
-const char KTokenBlock ('&');
-const char KTokenEmpty (' ');
+const char KTokenWall = '#';
+const char KTokenBlock = '&';
+const char KTokenEmpty = ' ';
 
 
 /**
