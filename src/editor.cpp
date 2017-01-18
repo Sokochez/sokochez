@@ -29,9 +29,9 @@ void PlaceToken (CMatrix & Mat, const CPosition & Pos,
     if ((ChToDigit(TokenKey) == KEditBlock) || (ChToDigit(TokenKey) == KEditEmpty)
         || (ChToDigit(TokenKey) == KEditWall))
     {
-        if (Mat[Pos.second][Pos.first] >= AvailableTokens[KEditSpecialBlocks] - 1)
+        if (Mat[Pos.second][Pos.first] == AvailableTokens[KEditSpecialBlocks] - 1)
             --AvailableTokens[KEditSpecialBlocks];
-        else if (Mat[Pos.second][Pos.first] >= AvailableTokens[KEditSpecialLocations] - 1)
+        else if (Mat[Pos.second][Pos.first] == AvailableTokens[KEditSpecialLocations] - 1)
             --AvailableTokens[KEditSpecialLocations];
         else if (Mat[Pos.second][Pos.first] == KTokenPlayer1)
             AvailableTokens[KEditPlayer1] = KTokenPlayer1;
@@ -60,13 +60,13 @@ void PlaceToken (CMatrix & Mat, const CPosition & Pos,
 void EditorAction (CMatrix & Mat,CPosition & Cursor,const char & Key,
                    vector <char> & AvailableTokens, const string & FileName)
 {
-    if (Key == KP1MoveUp)
+    if ((Key == KP1MoveUp) || (Key == toupper(KP1MoveUp)))
         MoveCursor(Mat, Cursor, 0, -1);
-    else if (Key == KP1MoveDown)
+    else if ((Key == KP1MoveDown) || (Key == toupper(KP1MoveDown)))
         MoveCursor(Mat, Cursor, 0, 1);
-    else if (Key == KP1MoveLeft)
+    else if ((Key == KP1MoveLeft) || (Key == toupper(KP1MoveLeft)))
         MoveCursor(Mat, Cursor, -1, 0);
-    else if (Key == KP1MoveRight)
+    else if ((Key == KP1MoveRight) || (Key == toupper(KP1MoveRight)))
         MoveCursor(Mat, Cursor, 1, 0);
     else if (ChToDigit(Key) <= 7)
         PlaceToken(Mat, Cursor, Key, AvailableTokens);
@@ -168,27 +168,41 @@ void DispEditor (CMatrix & Mat, const CPosition & Cursor, const vector <char> & 
     }
 }
 
-
+void ParseMapEditor (const CMatrix & Mat, vector <char> & Tokens)
+{
+    for (string line : Mat)
+        for (char ch : line)
+        {
+            if (ch == KTokenPlayer1)
+                Tokens[KEditPlayer1] = KTokenEmpty;
+            else if (ch == KTokenPlayer2)
+                Tokens[KEditPlayer2] = KTokenEmpty;
+            else if (IsSpecBlock(ch) && (ch >= Tokens[KEditSpecialBlocks]))
+                Tokens[KEditSpecialBlocks] = ch + 1;
+            else if (IsSpecPos(ch) && (ch >= Tokens[KEditSpecialLocations]))
+                Tokens[KEditSpecialLocations] = ch + 1;
+        }
+    ;
+}
 
 void Editor (const string & FileName)
 {
     char blockmin = tolower (KTokenBlockMin);
     vector <char> tokens {KTokenEmpty, KTokenEmpty, KTokenWall,KTokenBlock,KTokenPlayer1,KTokenPlayer2,
                      KTokenBlockMin, blockmin};
-    ifstream ifs (FileName);
-    if (ifs.is_open())
-    {
-        cerr << "Error : This map already exists" << endl;
-        return;
-    }
+    CMatrix map (LoadMap(FileName));
+    if (!CheckMapLoaded(map))
+        map.push_back(" ");
+    else
+        ParseMapEditor (map, tokens);
     ofstream ofs (FileName);
     if (!ofs.is_open ())
     {
         cerr << "Error : Cannot open this file" << endl;
         return;
     }
-    CMatrix map;
-    map.push_back(" ");
+    ofs.close();
+    SaveMatrix(map, FileName);
     CPosition cursor (0,0);
     char key;
     cout << "map loaded" << endl;
@@ -203,5 +217,6 @@ void Editor (const string & FileName)
         if (key == '0') break;
         EditorAction(map, cursor, key, tokens, FileName);
     }
+    SaveMatrix(map, FileName);
 }
 

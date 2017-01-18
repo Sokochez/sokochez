@@ -25,18 +25,71 @@ const unsigned KEditSpecialLocations (7);
  */
 void Editor (const string & FileName);
 
+/**
+ * @brief Places a token in the matrix
+ * @param Mat the matrix the token will be placed on
+ * @param Pos the position where to place the token
+ * @param TokenKey the key corresponding to the token that will be placed
+ * @param AvailableTokens the vector containing the tokens that can be placed
+ */
+
 void PlaceToken (CMatrix & Mat, const CPosition & Pos,
                  const char & TokenKey, vector <char> & AvailableTokens);
+
+/**
+ * @brief Does something in the editor
+ * @param Mat the matrix to do something on
+ * @param Cursor the cursor
+ * @param Key the key pressed
+ * @param AvailableTokens the vector containing available tokens
+ * @param FileName the name of the file in use
+ */
+
 void EditorAction (CMatrix & Mat,CPosition & Cursor, const char & Key,
                    vector <char> & AvailableTokens, const string & FileName);
 
+/**
+ * @brief Moves the cursor and resizes the matrix if needed
+ * @param Mat the matrix on which the cursor moves
+ * @param Pos the position of the cursor
+ * @param DistX the distance the cursor will move on the X axis
+ * @param DistY the distance the cursor will move on the Y axis
+ */
+
 void MoveCursor (CMatrix &Mat, CPosition & Pos,
                  const int & DistX, const int & DistY);
+
+/**
+ * @brief Saves the matrix to a file
+ * @param Mat the matrix to save
+ * @param FileName the file where to save the matrix
+ */
+
 void SaveMatrix (const CMatrix & Mat, const string & FileName);
+
+/**
+ * @brief Displays the editor
+ * @param Mat the matrix in use
+ * @param Cursor the editor cursors
+ * @param Tokens the available tokens
+ */
 
 void DispEditor (CMatrix & Mat, const CPosition &Cursor,
                  const vector <char> & Tokens);
+
+/**
+ * @brief Deletes empty lines and columns on right and bottom borders
+ * @param Mat the matrix to optimize
+ * @param Cursor the cursor
+ */
+
 void OptimizeMatrix (CMatrix & Mat, CPosition & Cursor);
 
+/**
+ * @brief Parses the matrix to fill the vector of available tokens correctly
+ * @param Mat the matrix to parse
+ * @param Tokens the vector of available tokens to fill
+ */
+void ParseMapEditor (const CMatrix & Mat, vector<char> & Tokens);
 
 #endif // EDITOR_H
