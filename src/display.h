@@ -1,7 +1,7 @@
 /**
  * \file display.h
  * \authors Baptiste Pouget
- * \brief Functions and constants related to the "graphics"
+ * \brief Functions and constants related to "graphics"
  */
 
 #ifndef DISPLAY_H
