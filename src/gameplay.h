@@ -1,3 +1,9 @@
+/**
+ * \file gameplay.h
+ * \authors Baptiste Pouget
+ * \brief Functions and constants related to gameplay
+ */
+
 #ifndef GAMEPLAY_H
 #define GAMEPLAY_H
 

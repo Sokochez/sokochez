@@ -1,3 +1,9 @@
+/**
+ * \file editor.h
+ * \authors Baptiste Pouget, Dorian Tachet
+ * \brief Functions and constants related to the editor mode
+ */
+
 #ifndef EDITOR_H
 #define EDITOR_H
 #include <map.h>

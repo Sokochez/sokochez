@@ -1,3 +1,10 @@
+/**
+ * \file map.h
+ * \authors Baptiste Pouget
+ * \brief Functions and constants related to map loading and parsing for the game
+ */
+
+
 #ifndef MAP_H
 #define MAP_H
 

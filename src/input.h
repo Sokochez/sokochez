@@ -1,3 +1,10 @@
+/**
+ * \file input.h
+ * \authors The GNU project
+ * \brief Functions related to terminal mode management taken from
+ *        https://www.gnu.org/software/libc/manual/html_node/Noncanon-Example.html
+ */
+
 #ifndef INPUT_H
 #define INPUT_H
 #include <termios.h>

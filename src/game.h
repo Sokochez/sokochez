@@ -1,3 +1,9 @@
+/**
+ * \file game.h
+ * \authors Baptiste Pouget, Dorian Tachet
+ * \brief Functions related to the game mode
+ */
+
 #ifndef GAME_H
 #define GAME_H
 

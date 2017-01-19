@@ -1,3 +1,9 @@
+/**
+ * \file display.h
+ * \authors Baptiste Pouget
+ * \brief Functions and constants related to the "graphics"
+ */
+
 #ifndef DISPLAY_H
 #define DISPLAY_H
 
