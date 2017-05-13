@@ -1,5 +1,5 @@
 CXX=g++
-CXXFLAGS=-W -Wall --std=c++11
+CXXFLAGS=-W -Wall -std=c++11
 LDFLAGS=
 EXEC=sokochez
 SRC=$(wildcard ./src/*.cpp)
