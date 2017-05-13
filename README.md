@@ -6,9 +6,9 @@ The Sokochez game
 Sokochez is a multiplayer clone of sokoban.
 The game is written in C++
 
-## Compiling
+## Building
 
-To compile Sokochez run `make`.
+To build Sokochez run `make`.
 
 ## Playing
 
