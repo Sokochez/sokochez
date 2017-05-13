@@ -7,9 +7,9 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <map.h>
-#include <display.h>
-#include <gameplay.h>
+#include "map.h"
+#include "display.h"
+#include "gameplay.h"
 #include <istream>
 #include "input.h"
 #include <cstdlib>

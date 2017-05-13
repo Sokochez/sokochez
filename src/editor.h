@@ -6,7 +6,7 @@
 
 #ifndef EDITOR_H
 #define EDITOR_H
-#include <map.h>
+#include "map.h"
 #include <cctype>
 #include <string>
 
