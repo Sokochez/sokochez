@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/Sokochez/sokochez.svg?branch=master)](https://travis-ci.org/Sokochez/sokochez)
+![Sokochez Logo](https://raw.githubusercontent.com/Sokochez/sokochez/master/logo.png)
 
 # sokochez
 The Sokochez game
