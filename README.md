@@ -10,6 +10,8 @@ The game is written in C++
 ## Building
 
 To build Sokochez run `make`.
+If you want to build Sokochez for an azerty keyboard :
+`make DEF=-DKB_AZERTY`
 
 ## Playing
 

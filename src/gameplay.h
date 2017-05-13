@@ -12,6 +12,7 @@
 
 using namespace std;
 
+#ifdef KB_AZERTY
 const char KP1MoveUp = 'z';
 const char KP1MoveDown = 's';
 const char KP1MoveLeft = 'q';
@@ -20,6 +21,17 @@ const char KP2MoveUp = 'o';
 const char KP2MoveDown = 'l';
 const char KP2MoveLeft = 'k';
 const char KP2MoveRight = 'm';
+#else
+const char KP1MoveUp = 'w';
+const char KP1MoveDown = 's';
+const char KP1MoveLeft = 'a';
+const char KP1MoveRight = 'd';
+const char KP2MoveUp = 'o';
+const char KP2MoveDown = 'l';
+const char KP2MoveLeft = 'k';
+const char KP2MoveRight = ';';
+#endif //KB
+
 const char KMenu = 'v';
 const char KKeyReset = '1';
 const char KSkip = '2';

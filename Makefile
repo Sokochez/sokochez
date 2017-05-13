@@ -1,6 +1,7 @@
 CXX=g++
 CXXFLAGS=-W -Wall -std=c++11
 LDFLAGS=
+DEF=
 EXEC=sokochez
 SRC=$(wildcard ./src/*.cpp)
 OBJ=$(SRC:.cpp=.o)
@@ -11,7 +12,7 @@ sokochez: $(OBJ)
 	$(CXX) -o $(BIN)$@ $^ $(LDFLAGS)
 
 %.o: %.cpp
-	$(CXX) -o $@ -c $< $(CXXFLAGS)
+	$(CXX) -o $@ -c $< $(CXXFLAGS) $(DEF)
 
 .PHONY: clean mrproper
 
