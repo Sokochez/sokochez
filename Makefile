@@ -20,3 +20,6 @@ clean:
 
 mrproper: clean
 	rm $(BIN)*
+
+pdf:
+	pdflatex -output-directory bin/ *.tex
