@@ -8,4 +8,16 @@ The game is written in C++
 
 ## Compiling
 
-To compile Sokochez, go to the src directory and run qmake then run make.
+To compile Sokochez run `make`.
+
+## Playing
+
+The arguments must be the names of the maps you want to load.
+
+To start in editor mode, the first argument must be `-e`
+
+Example:
+
+`./sokochez map1.txt map2.txt`
+
+The keys are `zqsd` and `oklm`, to open the menu, press `v`
