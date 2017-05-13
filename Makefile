@@ -16,7 +16,7 @@ sokochez: $(OBJ)
 .PHONY: clean mrproper
 
 clean:
-	rm ./src/*.o
+	+rm ./src/*.o
 
 mrproper: clean
 	rm $(BIN)*
