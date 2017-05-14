@@ -4,7 +4,7 @@
  * \brief Beginning of the project titled "Sokochez"
  *        A Sokoban multiplayer clone
  */
-
+#include <algorithm>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -16,25 +16,40 @@ using namespace std;
 
 int main (int argc, char *argv[])
 {
+    vector <int> flagsPos;
+    bool editor;
+    bool help;
     set_input_mode ();
-    if ((argc < 2) || (("-e" == (string) argv[1]) && (argc < 3)))
+
+    for (int i = 1; i < argc; ++i)
     {
-        cerr << "Argument(s) missing : At least one map file name required" << endl;
+        if (argv[i][0] == '-')
+            flagsPos.push_back(i);
+        if ((string) argv[i] == "-e")
+            editor = true;
+        if ((string) argv[i] == "-h")
+            help = true;
+    }
+
+    if (help)
+    {
+        cout << "Sokochez Help" << endl
+             << "Usage : [flags] level[s]" << endl
+             << "-e : editor mode " << endl
+             << "-h : print help " << endl;
         return 0;
     }
-    if ("-e" == (string) argv[1])
+
+    for (int i = 1; i < argc; ++i)
     {
-        for (int i (2); i < argc; ++i)
-        {
-            Editor (argv[i]);
-        }
+        if (find(flagsPos.begin(), flagsPos.end(), i) != flagsPos.end())
+            continue;
+        if (editor)
+            Editor(argv[i]);
+        else 
+            Game(argv[i]);
     }
-    else
-    {
-        for (int i (1); i < argc; ++i)
-        {
-            Game (argv[i]);
-        }
-    }
+
+    cout << "No more levels." << endl;
     return 0;
 }
