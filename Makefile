@@ -14,7 +14,7 @@ sokochez: $(OBJ)
 %.o: %.cpp
 	$(CXX) -o $@ -c $< $(CXXFLAGS) $(DEF)
 
-.PHONY: clean mrproper
+.PHONY: clean mrproper install uninstall
 
 clean:
 	-rm ./src/*.o
@@ -24,3 +24,12 @@ mrproper: clean
 
 pdf:
 	pdflatex -output-directory bin/ *.tex
+
+install: sokochez
+	mkdir -p $(DESTDIR)$(PREFIX)/usr/share/games/sokochez 
+	cp -R maps $(DESTDIR)$(PREFIX)/usr/share/games/sokochez
+	cp -R $(BIN)$(EXEC) $(DESTDIR)$(PREFIX)/usr/games/sokochez
+	cp -R ./sokochez-story $(DESTDIR)$(PREFIX)/usr/games/sokochez-story
+
+uninstall: 
+	rm -rf $(DESTDIR)$(PREFIX)/usr/share/games/sokochez $(DESTDIR)$(PREFIX)/usr/games/sokochez $(DESTDIR)$(PREFIX)/usr/games/sokochez-story

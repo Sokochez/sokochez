@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec sokochez /usr/share/games/sokochez/maps/*/*
