@@ -17,10 +17,14 @@ If you want to build Sokochez for an azerty keyboard :
 
 The arguments must be the names of the maps you want to load.
 
-To start in editor mode, the first argument must be `-e`
+To start in editor mode use the `-e` argument.
 
 Example:
 
 `./sokochez map1.txt map2.txt`
 
-The keys are `zqsd` and `oklm`, to open the menu, press `v`
+The keys are `zqsd` and `oklm` if compiled for azerty, if compiled for qwerty, the keys are `wsad` and `okl;`. To open the menu, press `v`.
+
+## Other
+
+Ignore sokochez-story, it is only used if you run `make install` and allows you to run all the default levels.  
