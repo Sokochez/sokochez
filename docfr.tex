@@ -58,22 +58,22 @@ Les fonctionnalités que nous avons ajoutées sont les suivantes :
 Les niveaux sont de simples fichiers texte. 
 Pour charger un niveau, il faut le passer en argument au lancement du programme.
 \begin{lstlisting}
-./jeu niveau.txt
+./sokochez niveau.txt
 \end{lstlisting}
 Plusieurs niveaux peuvent être passés en arguments, ils seront lancés à la suite.
 \begin{lstlisting}
-./jeu niveaux/*
-./jeu niveau1.txt niveau2.txt
+./sokochez niveaux/*
+./sokochez niveau1.txt niveau2.txt
 \end{lstlisting}
 Il faut ensuite lire les règles qui sont affichées au chargement du niveau.
 Les touches de déplacement sont \emph{zqsd} pour le joueur 1 et \emph{oklm} pour le joueur 2.
 La touche de menu est \emph{v}.
 
 \section{Éditeur de niveaux}
-Pour lancer l'éditeur de niveaux, le premier argument passé au programme doit être \emph{-e}.
+Pour lancer l'éditeur de niveaux, utilisez l'argument \emph{-e}.
 \begin{lstlisting}
-./jeu -e niveau1.txt
-./jeu -e niveau1.txt niveau2.txt
+./sokochez -e niveau1.txt
+./sokochez -e niveau1.txt niveau2.txt
 \end{lstlisting}
 Cet éditeur permet de créer et modifier des niveaux adaptés au jeu.
 
@@ -81,4 +81,4 @@ Cet éditeur permet de créer et modifier des niveaux adaptés au jeu.
     \includegraphics[width=200px,height=200px]{logo.png}
 \end{center}
 
-\end{document}
+\end{document}.
