@@ -17,8 +17,8 @@ using namespace std;
 int main (int argc, char *argv[])
 {
     vector <int> flagsPos;
-    bool editor;
-    bool help;
+    bool editor = false;
+    bool help = false;
     set_input_mode ();
 
     for (int i = 1; i < argc; ++i)
