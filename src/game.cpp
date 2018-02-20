@@ -35,14 +35,31 @@ void Game (const string & FileName)
     while (!CheckWin (obj, gamemode))
     {
         ClearScreen ();
+	#ifdef KB_ARROWS
+	cout << "P1: tab; P2: backspace; Menu: enter;\n";
+	#endif
         ShowMatrix (map);
         read (STDIN_FILENO, &key, 1);
+	#ifdef KB_ARROWS
+	if (isGarbage(key)) {
+	    key = 0;
+	    continue;
+	}
+	key = arrowsToKey(key);
+	#endif
         if (KMenu == key)
         {
             do
             {
                 DispMenu ();
                 read (STDIN_FILENO, &key, 1);
+#ifdef KB_ARROWS
+		if (isGarbage(key)) {
+		    key = 0;
+		    continue;
+		}
+		key = arrowsToKey(key);
+#endif
                 switch (key)
                 {
                 case KKeyReset:
@@ -81,7 +98,13 @@ void DispMenu ()
     Color (KBold);
     cout << "--[MENU]--" << endl;
     Color (KReset);
+    #ifdef KB_ARROWS
+    cout << "^) Reset"   << endl
+         << "<) Skip this map" << endl
+         << "v) Exit" << endl;
+    #else 
     cout << KKeyReset << ") Reset"   << endl
          << KSkip << ") Skip this map" << endl
          << KExit << ") Exit" << endl;
+    #endif
 }

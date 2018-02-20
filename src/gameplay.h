@@ -12,7 +12,7 @@
 
 using namespace std;
 
-#ifdef KB_AZERTY
+#if defined(KB_AZERTY) || defined(KB_ARROWS)
 const char KP1MoveUp = 'z';
 const char KP1MoveDown = 's';
 const char KP1MoveLeft = 'q';
@@ -21,6 +21,7 @@ const char KP2MoveUp = 'o';
 const char KP2MoveDown = 'l';
 const char KP2MoveLeft = 'k';
 const char KP2MoveRight = 'm';
+
 #else
 const char KP1MoveUp = 'w';
 const char KP1MoveDown = 's';
@@ -36,6 +37,22 @@ const char KMenu = 'v';
 const char KKeyReset = '1';
 const char KSkip = '2';
 const char KExit = '3';
+
+#if defined(KB_ARROWS)
+char arrowsToKey(char key);
+bool isGarbage(char key);
+//arrows
+const char KuseP1 = 9; //tab
+const char KuseP2 = 127; //backspace
+const char KuseMenu = 10; //space
+const char KarrowUp = 'A';
+const char KarrowDown = 'B';
+const char KarrowLeft = 'D';
+const char KarrowRight = 'C';
+#define M_MENU 0
+#define M_P1 1
+#define M_P2 2
+#endif
 
 //Gamemodes
 const int KGMNone = 0;
@@ -113,5 +130,7 @@ void WriteRules (const char & GameMode);
  */
 
 bool AreInContact (const CPosition & Pos1, const CPosition & Pos2);
+
+
 
 #endif // GAMEPLAY_H

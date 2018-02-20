@@ -161,3 +161,58 @@ bool AreInContact (const CPosition & Pos1, const CPosition & Pos2)
             && ((int) Pos1.second <= (int) Pos2.second + 1)));
 
 } // AreInContact
+
+#ifdef KB_ARROWS
+bool isGarbage(char key) {
+    return (key == 27) || (key == 91);
+}
+
+char arrowsToKey(char key) {
+    static char mode = M_P1;
+    switch (key) {
+    case KuseP1:
+	mode = M_P1;
+	break;
+    case KuseP2:
+	mode = M_P2;
+	break;
+    case KuseMenu:
+	if (mode != M_MENU) {
+	    mode = M_MENU;
+	} else {
+	    mode = M_P1;
+	}
+	return KMenu;
+	break;
+    case KarrowUp:
+	if (mode == M_P1) return KP1MoveUp;
+	if (mode == M_P2) return KP2MoveUp;
+	if (mode == M_MENU) {
+       	    mode = M_P1;
+	    return KKeyReset;
+	}
+		    
+	break;
+    case KarrowDown:
+	if (mode == M_P1) return KP1MoveDown;
+	if (mode == M_P2) return KP2MoveDown;
+	if (mode == M_MENU) {
+	    return KExit;
+	}
+	break;
+    case KarrowLeft:
+	if (mode == M_P1) return KP1MoveLeft;
+	if (mode == M_P2) return KP2MoveLeft;
+	if (mode == M_MENU) {
+	    mode = M_P1;
+	    return KSkip;
+	}
+	break;
+    case KarrowRight:
+	return (mode == M_P1 ? KP1MoveRight :
+		(mode == M_P2 ? KP2MoveRight : 0));
+	break;
+    }
+    return 0;
+}
+#endif
